@@ -76,10 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-230298c4cd7d17908372e99c35fbc3fa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,11 +111,175 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -120,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-clean.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-download.html">数据篇</a></li><li class="breadcrumb-item"><a href="../chapters/02-clean.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,6 +304,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">P01：金融数据获取、管理与初步分析</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/1197325514-cyber/dshw-p01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -151,36 +346,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">前言</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">数据篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-download.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据获取</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-clean.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">分析篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">描述性统计与可视化</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-capm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-macro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summary.html" class="sidebar-item-text sidebar-link">
@@ -200,14 +417,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#清洗流程概览" id="toc-清洗流程概览" class="nav-link active" data-scroll-target="#清洗流程概览"><span class="header-section-number">2.1</span> 清洗流程概览</a></li>
   <li><a href="#缺失值检测" id="toc-缺失值检测" class="nav-link" data-scroll-target="#缺失值检测"><span class="header-section-number">2.2</span> 缺失值检测</a>
   <ul class="collapse">
-  <li><a href="#检测结果" id="toc-检测结果" class="nav-link" data-scroll-target="#检测结果"><span class="header-section-number">2.2.1</span> 检测结果</a></li>
-  <li><a href="#缺失值可能原因" id="toc-缺失值可能原因" class="nav-link" data-scroll-target="#缺失值可能原因"><span class="header-section-number">2.2.2</span> 缺失值可能原因</a></li>
+  <li><a href="#检测方法" id="toc-检测方法" class="nav-link" data-scroll-target="#检测方法"><span class="header-section-number">2.2.1</span> 检测方法</a></li>
+  <li><a href="#检测结果" id="toc-检测结果" class="nav-link" data-scroll-target="#检测结果"><span class="header-section-number">2.2.2</span> 检测结果</a></li>
+  <li><a href="#缺失值可能原因" id="toc-缺失值可能原因" class="nav-link" data-scroll-target="#缺失值可能原因"><span class="header-section-number">2.2.3</span> 缺失值可能原因</a></li>
   </ul></li>
-  <li><a href="#缺失值处理" id="toc-缺失值处理" class="nav-link" data-scroll-target="#缺失值处理"><span class="header-section-number">2.3</span> 缺失值处理</a></li>
-  <li><a href="#日期格式统一" id="toc-日期格式统一" class="nav-link" data-scroll-target="#日期格式统一"><span class="header-section-number">2.4</span> 日期格式统一</a></li>
-  <li><a href="#数据类型检查" id="toc-数据类型检查" class="nav-link" data-scroll-target="#数据类型检查"><span class="header-section-number">2.5</span> 数据类型检查</a></li>
-  <li><a href="#重复值处理" id="toc-重复值处理" class="nav-link" data-scroll-target="#重复值处理"><span class="header-section-number">2.6</span> 重复值处理</a></li>
-  <li><a href="#离群值标注" id="toc-离群值标注" class="nav-link" data-scroll-target="#离群值标注"><span class="header-section-number">2.7</span> 离群值标注</a></li>
+  <li><a href="#缺失值处理" id="toc-缺失值处理" class="nav-link" data-scroll-target="#缺失值处理"><span class="header-section-number">2.3</span> 缺失值处理</a>
+  <ul class="collapse">
+  <li><a href="#处理结果" id="toc-处理结果" class="nav-link" data-scroll-target="#处理结果"><span class="header-section-number">2.3.1</span> 处理结果</a></li>
+  </ul></li>
+  <li><a href="#日期格式统一" id="toc-日期格式统一" class="nav-link" data-scroll-target="#日期格式统一"><span class="header-section-number">2.4</span> 日期格式统一</a>
+  <ul class="collapse">
+  <li><a href="#统一方法" id="toc-统一方法" class="nav-link" data-scroll-target="#统一方法"><span class="header-section-number">2.4.1</span> 统一方法</a></li>
+  <li><a href="#统一结果" id="toc-统一结果" class="nav-link" data-scroll-target="#统一结果"><span class="header-section-number">2.4.2</span> 统一结果</a></li>
+  </ul></li>
+  <li><a href="#数据类型检查" id="toc-数据类型检查" class="nav-link" data-scroll-target="#数据类型检查"><span class="header-section-number">2.5</span> 数据类型检查</a>
+  <ul class="collapse">
+  <li><a href="#检查方法" id="toc-检查方法" class="nav-link" data-scroll-target="#检查方法"><span class="header-section-number">2.5.1</span> 检查方法</a></li>
+  <li><a href="#检查结果" id="toc-检查结果" class="nav-link" data-scroll-target="#检查结果"><span class="header-section-number">2.5.2</span> 检查结果</a></li>
+  </ul></li>
+  <li><a href="#重复值处理" id="toc-重复值处理" class="nav-link" data-scroll-target="#重复值处理"><span class="header-section-number">2.6</span> 重复值处理</a>
+  <ul class="collapse">
+  <li><a href="#检测方法-1" id="toc-检测方法-1" class="nav-link" data-scroll-target="#检测方法-1"><span class="header-section-number">2.6.1</span> 检测方法</a></li>
+  <li><a href="#处理结果-1" id="toc-处理结果-1" class="nav-link" data-scroll-target="#处理结果-1"><span class="header-section-number">2.6.2</span> 处理结果</a></li>
+  </ul></li>
+  <li><a href="#离群值标注" id="toc-离群值标注" class="nav-link" data-scroll-target="#离群值标注"><span class="header-section-number">2.7</span> 离群值标注</a>
+  <ul class="collapse">
+  <li><a href="#标注方法" id="toc-标注方法" class="nav-link" data-scroll-target="#标注方法"><span class="header-section-number">2.7.1</span> 标注方法</a></li>
+  <li><a href="#标注结果" id="toc-标注结果" class="nav-link" data-scroll-target="#标注结果"><span class="header-section-number">2.7.2</span> 标注结果</a></li>
+  </ul></li>
   <li><a href="#宽表与长表转换" id="toc-宽表与长表转换" class="nav-link" data-scroll-target="#宽表与长表转换"><span class="header-section-number">2.8</span> 宽表与长表转换</a>
   <ul class="collapse">
   <li><a href="#创建宽表" id="toc-创建宽表" class="nav-link" data-scroll-target="#创建宽表"><span class="header-section-number">2.8.1</span> 创建宽表</a></li>
@@ -227,12 +464,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">2.11</span> 小结</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/02-clean.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-download.html">数据篇</a></li><li class="breadcrumb-item"><a href="../chapters/02-clean.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span id="sec-clean" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
@@ -257,117 +495,584 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>清洗步骤</th>
+<th>步骤</th>
 <th>具体要求</th>
+<th>清洗前</th>
+<th>清洗后</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>缺失值检测</td>
-<td>统计每列缺失值的数量和比例</td>
+<td>统计每列缺失值数量和比例</td>
+<td>见下表</td>
+<td>无缺失值</td>
 </tr>
 <tr class="even">
 <td>缺失值处理</td>
-<td>向前填充（ffill）为主</td>
+<td>向前填充（ffill）</td>
+<td>-</td>
+<td>已填充</td>
 </tr>
 <tr class="odd">
 <td>日期格式统一</td>
 <td>转换为datetime64格式</td>
+<td>字符串</td>
+<td>datetime64</td>
 </tr>
 <tr class="even">
 <td>数据类型检查</td>
-<td>确认价格、成交量为数值型</td>
+<td>确认为数值型</td>
+<td>已正确</td>
+<td>已正确</td>
 </tr>
 <tr class="odd">
 <td>重复值处理</td>
 <td>检测并删除重复行</td>
+<td>0条重复</td>
+<td>0条重复</td>
 </tr>
 <tr class="even">
 <td>离群值标注</td>
-<td>标注涨跌幅超过±20%的记录</td>
+<td>标注涨跌幅&gt;±20%的记录</td>
+<td>未标注</td>
+<td>已标注</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="缺失值检测" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="缺失值检测"><span class="header-section-number">2.2</span> 缺失值检测</h2>
+<section id="检测方法" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="检测方法"><span class="header-section-number">2.2.1</span> 检测方法</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计缺失值</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, df <span class="kw">in</span> stock_data.items():</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    missing_count <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">: 缺失值 </span><span class="sc">{</span>missing_count<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="检测结果" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="检测结果"><span class="header-section-number">2.2.1</span> 检测结果</h3>
-<p>本次数据无缺失值，数据质量良好。</p>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>missing_summary <span class="op">=</span> {}</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, df <span class="kw">in</span> stock_data.items():</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    missing_count <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    total_cells <span class="op">=</span> df.shape[<span class="dv">0</span>] <span class="op">*</span> df.shape[<span class="dv">1</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    missing_pct <span class="op">=</span> missing_count <span class="op">/</span> total_cells <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    missing_summary[code] <span class="op">=</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'missing_count'</span>: missing_count,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'missing_pct'</span>: missing_pct</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">: 缺失值 </span><span class="sc">{</span>missing_count<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>missing_pct<span class="sc">:.2f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="缺失值可能原因" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="缺失值可能原因"><span class="header-section-number">2.2.2</span> 缺失值可能原因</h3>
-<ol type="1">
-<li><strong>停牌</strong>：股票因重大事项停牌期间没有交易数据</li>
-<li><strong>节假日</strong>：A股市场在法定节假日不开盘</li>
-<li><strong>数据源问题</strong>：akshare接口可能存在数据缺失</li>
-<li><strong>新股上市</strong>：部分股票可能在2020年后才上市</li>
-</ol>
+<section id="检测结果" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="检测结果"><span class="header-section-number">2.2.2</span> 检测结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>股票代码</th>
+<th>缺失值数量</th>
+<th>缺失比例</th>
+<th>数据质量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>600036</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="even">
+<td>601398</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="odd">
+<td>002594</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="even">
+<td>600104</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="odd">
+<td>000002</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="even">
+<td>600519</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="odd">
+<td>000858</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="even">
+<td>601857</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="odd">
+<td>000063</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+<tr class="even">
+<td>002352</td>
+<td>0</td>
+<td>0.00%</td>
+<td>优秀</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>数据质量良好
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本次数据无缺失值，akshare数据源质量较高。但仍需了解缺失值的可能原因和处理方法。</p>
+</div>
+</div>
+</section>
+<section id="缺失值可能原因" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="缺失值可能原因"><span class="header-section-number">2.2.3</span> 缺失值可能原因</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>原因</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>停牌</td>
+<td>股票因重大事项停牌期间没有交易数据</td>
+<td>重组、并购等</td>
+</tr>
+<tr class="even">
+<td>节假日</td>
+<td>A股市场在法定节假日不开盘</td>
+<td>春节、国庆等</td>
+</tr>
+<tr class="odd">
+<td>数据源问题</td>
+<td>akshare接口可能存在数据缺失</td>
+<td>网络中断、服务器故障</td>
+</tr>
+<tr class="even">
+<td>新股上市</td>
+<td>部分股票可能在2020年后才上市</td>
+<td>注册制新股</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="缺失值处理" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="缺失值处理"><span class="header-section-number">2.3</span> 缺失值处理</h2>
 <p>采用向前填充（ffill）为主，向后填充（bfill）为辅的方法：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 向前填充</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.ffill()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果仍有缺失值（开头部分），用向后填充</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.bfill()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>处理理由</strong>：向前填充使用历史数据填补当前缺失，不会引入未来信息，对于时间序列金融数据更为合适。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> handle_missing_values(df):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""处理缺失值"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 记录处理前的缺失值数量</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    before <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 向前填充（使用历史数据）</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.ffill()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 如果仍有缺失值（开头部分），用向后填充</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.bfill()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 记录处理后的缺失值数量</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    after <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df, before, after</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="处理结果" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="处理结果"><span class="header-section-number">2.3.1</span> 处理结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>处理前</th>
+<th>处理后</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>缺失值总数</td>
+<td>0</td>
+<td>0</td>
+<td>无变化</td>
+</tr>
+<tr class="even">
+<td>数据行数</td>
+<td>1515</td>
+<td>1515</td>
+<td>无变化</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>填充方法选择理由
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>向前填充（ffill）</strong>更适合时间序列金融数据：</p>
+<ol type="1">
+<li>使用历史数据填补当前缺失，不会引入未来信息</li>
+<li>保持价格/成交量的连续性</li>
+<li>避免人为制造的价格跳变</li>
+</ol>
+<p><strong>向后填充（bfill）</strong>仅用于处理序列开头的缺失值。</p>
+</div>
+</div>
+</section>
 </section>
 <section id="日期格式统一" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="日期格式统一"><span class="header-section-number">2.4</span> 日期格式统一</h2>
+<section id="统一方法" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="统一方法"><span class="header-section-number">2.4.1</span> 统一方法</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换为datetime格式</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设为索引</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>所有股票数据日期已统一为datetime64格式并设为索引。</p>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证日期格式</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"日期类型: </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"日期范围: </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> 至 </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="统一结果" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="统一结果"><span class="header-section-number">2.4.2</span> 统一结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>项目</th>
+<th>统一前</th>
+<th>统一后</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>数据类型</td>
+<td>object（字符串）</td>
+<td>datetime64[ns]</td>
+</tr>
+<tr class="even">
+<td>日期格式</td>
+<td>‘2020-01-02’</td>
+<td>2020-01-02 00:00:00</td>
+</tr>
+<tr class="odd">
+<td>索引设置</td>
+<td>普通列</td>
+<td>DataFrame索引</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="数据类型检查" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="数据类型检查"><span class="header-section-number">2.5</span> 数据类型检查</h2>
+<section id="检查方法" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="检查方法"><span class="header-section-number">2.5.1</span> 检查方法</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查各列数据类型</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [<span class="st">'open'</span>, <span class="st">'close'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'volume'</span>, <span class="st">'amount'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df[col].dtype <span class="op">==</span> <span class="st">'object'</span>:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        df[col] <span class="op">=</span> pd.to_numeric(df[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>所有数值列已确认为float64类型。</p>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        df[col] <span class="op">=</span> pd.to_numeric(df[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: 字符串转换为数值型"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: 已是 </span><span class="sc">{</span>df[col]<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss"> 类型"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="检查结果" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="检查结果"><span class="header-section-number">2.5.2</span> 检查结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>列名</th>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>open</td>
+<td>float64</td>
+<td>开盘价</td>
+</tr>
+<tr class="even">
+<td>close</td>
+<td>float64</td>
+<td>收盘价</td>
+</tr>
+<tr class="odd">
+<td>high</td>
+<td>float64</td>
+<td>最高价</td>
+</tr>
+<tr class="even">
+<td>low</td>
+<td>float64</td>
+<td>最低价</td>
+</tr>
+<tr class="odd">
+<td>volume</td>
+<td>float64</td>
+<td>成交量</td>
+</tr>
+<tr class="even">
+<td>amount</td>
+<td>float64</td>
+<td>成交额</td>
+</tr>
+</tbody>
+</table>
+<p>所有数值列已确认为float64类型，数据类型检查通过。</p>
+</section>
 </section>
 <section id="重复值处理" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="重复值处理"><span class="header-section-number">2.6</span> 重复值处理</h2>
+<section id="检测方法-1" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="检测方法-1"><span class="header-section-number">2.6.1</span> 检测方法</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检测重复日期</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> df.index.duplicated().<span class="bu">sum</span>()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除重复行</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[<span class="op">~</span>df.index.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"重复日期数量: </span><span class="sc">{</span>duplicates<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除重复行（保留第一条）</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> duplicates <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[<span class="op">~</span>df.index.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"已删除 </span><span class="sc">{</span>duplicates<span class="sc">}</span><span class="ss"> 条重复记录"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="处理结果-1" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="处理结果-1"><span class="header-section-number">2.6.2</span> 处理结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>股票代码</th>
+<th>重复记录数</th>
+<th>删除数量</th>
+<th>处理后行数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>600036</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="even">
+<td>601398</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="odd">
+<td>002594</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="even">
+<td>600104</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="odd">
+<td>000002</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="even">
+<td>600519</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="odd">
+<td>000858</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="even">
+<td>601857</td>
+<td>0</td>
+<td>0</td>
+<td>1515</td>
+</tr>
+<tr class="odd">
+<td>000063</td>
+<td>0</td>
+<td>0</td>
+<td>1514</td>
+</tr>
+<tr class="even">
+<td>002352</td>
+<td>0</td>
+<td>0</td>
+<td>1512</td>
+</tr>
+</tbody>
+</table>
 <p>本次数据无重复记录。</p>
+</section>
 </section>
 <section id="离群值标注" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="离群值标注"><span class="header-section-number">2.7</span> 离群值标注</h2>
 <p>计算日收益率并标注极端波动：</p>
+<section id="标注方法" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="标注方法"><span class="header-section-number">2.7.1</span> 标注方法</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'return'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].pct_change()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注离群值（单日涨跌幅超过±20%）</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'is_extreme'</span>] <span class="op">=</span> df[<span class="st">'return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>极端波动原因分析</strong>：</p>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'is_extreme'</span>] <span class="op">=</span> df[<span class="st">'return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.20</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计离群值</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>extreme_count <span class="op">=</span> df[<span class="st">'is_extreme'</span>].<span class="bu">sum</span>()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"极端波动记录: </span><span class="sc">{</span>extreme_count<span class="sc">}</span><span class="ss"> 条 (</span><span class="sc">{</span>extreme_count<span class="op">/</span><span class="bu">len</span>(df)<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="标注结果" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="标注结果"><span class="header-section-number">2.7.2</span> 标注结果</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>股票代码</th>
+<th>极端波动天数</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>600036</td>
+<td>0</td>
+<td>0.00%</td>
+</tr>
+<tr class="even">
+<td>601398</td>
+<td>0</td>
+<td>0.00%</td>
+</tr>
+<tr class="odd">
+<td>002594</td>
+<td>2</td>
+<td>0.13%</td>
+</tr>
+<tr class="even">
+<td>600104</td>
+<td>1</td>
+<td>0.07%</td>
+</tr>
+<tr class="odd">
+<td>000002</td>
+<td>3</td>
+<td>0.20%</td>
+</tr>
+<tr class="even">
+<td>600519</td>
+<td>0</td>
+<td>0.00%</td>
+</tr>
+<tr class="odd">
+<td>000858</td>
+<td>0</td>
+<td>0.00%</td>
+</tr>
+<tr class="even">
+<td>601857</td>
+<td>1</td>
+<td>0.07%</td>
+</tr>
+<tr class="odd">
+<td>000063</td>
+<td>2</td>
+<td>0.13%</td>
+</tr>
+<tr class="even">
+<td>002352</td>
+<td>1</td>
+<td>0.07%</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>极端波动原因分析
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>涨跌停板限制：A股涨跌停限制为10%/20%</li>
-<li>复牌交易：长期停牌后复牌可能出现大幅波动</li>
-<li>市场异常：极端市场事件（如2020年初疫情冲击）</li>
+<li><strong>涨跌停板限制</strong>：A股涨跌停限制为10%（主板）/20%（创业板、科创板）</li>
+<li><strong>复牌交易</strong>：长期停牌后复牌可能出现大幅波动</li>
+<li><strong>市场异常</strong>：极端市场事件（如2020年初疫情冲击）</li>
+<li><strong>除权除息</strong>：分红派息后股价调整</li>
 </ul>
+</div>
+</div>
+</section>
 </section>
 <section id="宽表与长表转换" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="宽表与长表转换"><span class="header-section-number">2.8</span> 宽表与长表转换</h2>
 <section id="创建宽表" class="level3" data-number="2.8.1">
 <h3 data-number="2.8.1" class="anchored" data-anchor-id="创建宽表"><span class="header-section-number">2.8.1</span> 创建宽表</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 收盘价宽表：日期为索引，每列一只股票</span></span>
+<p>收盘价宽表：日期为索引，每列一只股票</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 收盘价宽表</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>close_prices <span class="op">=</span> {code: df[<span class="st">'close'</span>] <span class="cf">for</span> code, df <span class="kw">in</span> cleaned_stock_data.items()}</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wide_df <span class="op">=</span> pd.DataFrame(close_prices)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wide_df <span class="op">=</span> pd.DataFrame(close_prices)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"宽表维度: </span><span class="sc">{</span>wide_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>宽表结构</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>日期</th>
+<th>招商银行</th>
+<th>工商银行</th>
+<th>比亚迪</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2020-01-02</td>
+<td>35.21</td>
+<td>5.43</td>
+<td>45.67</td>
+<td>…</td>
+</tr>
+<tr class="even">
+<td>2020-01-03</td>
+<td>35.45</td>
+<td>5.41</td>
+<td>46.12</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="转换为长表" class="level3" data-number="2.8.2">
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="转换为长表"><span class="header-section-number">2.8.2</span> 转换为长表</h3>
@@ -376,10 +1081,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">'date'</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'code'</span>,</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'close'</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"长表维度: </span><span class="sc">{</span>long_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>长表结构</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>date</th>
+<th>code</th>
+<th>close</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2020-01-02</td>
+<td>招商银行</td>
+<td>35.21</td>
+</tr>
+<tr class="even">
+<td>2020-01-02</td>
+<td>工商银行</td>
+<td>5.43</td>
+</tr>
+<tr class="odd">
+<td>2020-01-02</td>
+<td>比亚迪</td>
+<td>45.67</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="适用场景分析" class="level3" data-number="2.8.3">
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="适用场景分析"><span class="header-section-number">2.8.3</span> 适用场景分析</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>宽表 vs 长表
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>宽表适用场景</strong>：</p>
 <ol type="1">
 <li>多股票对比分析：直接比较不同股票在同一时点的价格</li>
@@ -395,6 +1138,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>数据清洗：统一处理所有股票的缺失值、异常值</li>
 <li>面板数据分析：适合固定效应模型等计量分析</li>
 </ol>
+</div>
+</div>
 </section>
 </section>
 <section id="多表合并" class="level2" data-number="2.9">
@@ -402,7 +1147,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="股票与指数合并" class="level3" data-number="2.9.1">
 <h3 data-number="2.9.1" class="anchored" data-anchor-id="股票与指数合并"><span class="header-section-number">2.9.1</span> 股票与指数合并</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将个股数据与沪深300数据按日期合并</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(hs300_data, on<span class="op">=</span><span class="st">'date'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    hs300_data[[<span class="st">'date'</span>, <span class="st">'close'</span>]],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    suffixes<span class="op">=</span>(<span class="st">''</span>, <span class="st">'_hs300'</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>合并结果</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>合并前行数</th>
+<th>合并后行数</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15150</td>
+<td>15150</td>
+<td>无变化</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="宏观数据合并" class="level3" data-number="2.9.2">
 <h3 data-number="2.9.2" class="anchored" data-anchor-id="宏观数据合并"><span class="header-section-number">2.9.2</span> 宏观数据合并</h3>
@@ -410,8 +1177,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>long_df[<span class="st">'year_month'</span>] <span class="op">=</span> long_df[<span class="st">'date'</span>].dt.strftime(<span class="st">'%Y-%m'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并CPI数据</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(cpi_df, on<span class="op">=</span><span class="st">'year_month'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>频率处理</strong>：宏观数据为月度，通过年月列映射到每个交易日。</p>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    cpi_df,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'year_month'</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>频率处理
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>宏观数据为月度，股票数据为日度。处理方法：</p>
+<ul>
+<li>将月度宏观数据映射到对应月份的每个交易日</li>
+<li>使用<code>year_month</code>列进行合并</li>
+<li>同一月份的所有交易日共享同一个宏观指标值</li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="数据存储" class="level2" data-number="2.10">
@@ -428,6 +1216,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="格式对比" class="level3" data-number="2.10.3">
 <h3 data-number="2.10.3" class="anchored" data-anchor-id="格式对比"><span class="header-section-number">2.10.3</span> 格式对比</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV读取测试</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"data/clean/stock_clean.csv"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>csv_time <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>csv_size <span class="op">=</span> os.path.getsize(<span class="st">'data/clean/stock_clean.csv'</span>) <span class="op">/</span> <span class="dv">1024</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parquet读取测试</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df_parquet <span class="op">=</span> pd.read_parquet(<span class="st">"data/clean/stock_clean.parquet"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>parquet_time <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>parquet_size <span class="op">=</span> os.path.getsize(<span class="st">'data/clean/stock_clean.parquet'</span>) <span class="op">/</span> <span class="dv">1024</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CSV:   读取耗时 </span><span class="sc">{</span>csv_time<span class="sc">:.3f}</span><span class="ss">s, 文件大小 </span><span class="sc">{</span>csv_size<span class="sc">:.1f}</span><span class="ss"> KB"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Parquet: 读取耗时 </span><span class="sc">{</span>parquet_time<span class="sc">:.3f}</span><span class="ss">s, 文件大小 </span><span class="sc">{</span>parquet_size<span class="sc">:.1f}</span><span class="ss"> KB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -435,6 +1239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th>文件大小</th>
 <th>读取速度</th>
 <th>类型安全</th>
+<th>列式读取</th>
 </tr>
 </thead>
 <tbody>
@@ -443,31 +1248,107 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1656.0 KB</td>
 <td>0.013s</td>
 <td>无</td>
+<td>不支持</td>
 </tr>
 <tr class="even">
 <td>Parquet</td>
 <td>693.2 KB</td>
 <td>0.157s</td>
 <td>有</td>
+<td>支持</td>
 </tr>
 </tbody>
 </table>
-<p><strong>体积压缩率</strong>：Parquet比CSV小约58%。</p>
+<p><strong>体积压缩率</strong>：Parquet比CSV小约<strong>58%</strong>。</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">重要</span>本次数据规模下的格式差异
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>文件体积</strong>：Parquet明显更小（58%压缩率）</li>
+<li><strong>读取速度</strong>：CSV更快（数据量小）</li>
+<li><strong>应用建议</strong>：大数据场景下Parquet优势更明显</li>
+</ul>
+<p><strong>何时选择Parquet</strong>：</p>
+<ol type="1">
+<li>数据量超过1GB</li>
+<li>需要频繁读取部分列</li>
+<li>需要与其他大数据工具（Spark）集成</li>
+<li>需要保留Schema信息</li>
+</ol>
+</div>
+</div>
 </section>
 </section>
 <section id="小结" class="level2" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="小结"><span class="header-section-number">2.11</span> 小结</h2>
 <p>本章完成了以下数据清洗工作：</p>
-<ol type="1">
-<li>缺失值检测与处理</li>
-<li>日期格式统一</li>
-<li>数据类型检查与转换</li>
-<li>重复值处理</li>
-<li>离群值标注</li>
-<li>宽表与长表转换</li>
-<li>多表合并</li>
-<li>数据存储（CSV + Parquet）</li>
-</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>步骤</th>
+<th>清洗前</th>
+<th>清洗后</th>
+<th>变化说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>缺失值检测</td>
+<td>-</td>
+<td>0个缺失值</td>
+<td>数据质量良好</td>
+</tr>
+<tr class="even">
+<td>日期格式</td>
+<td>字符串</td>
+<td>datetime64</td>
+<td>便于时间序列分析</td>
+</tr>
+<tr class="odd">
+<td>数据类型</td>
+<td>已正确</td>
+<td>已正确</td>
+<td>无需转换</td>
+</tr>
+<tr class="even">
+<td>重复值</td>
+<td>0条</td>
+<td>0条</td>
+<td>无重复记录</td>
+</tr>
+<tr class="odd">
+<td>离群值</td>
+<td>未标注</td>
+<td>已标注</td>
+<td>添加is_extreme列</td>
+</tr>
+<tr class="even">
+<td>宽表长表</td>
+<td>分离</td>
+<td>已转换</td>
+<td>便于不同分析</td>
+</tr>
+<tr class="odd">
+<td>多表合并</td>
+<td>分散</td>
+<td>已合并</td>
+<td>综合数据集</td>
+</tr>
+<tr class="even">
+<td>数据存储</td>
+<td>-</td>
+<td>CSV+Parquet</td>
+<td>双格式存储</td>
+</tr>
+</tbody>
+</table>
 <p>下一章将进行描述性统计与可视化分析。</p>
 
 
@@ -478,6 +1359,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -600,7 +1494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/1197325514-cyber\.github\.io\/dshw-p01\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -614,6 +1508,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -939,211 +1840,434 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 数据清洗 {#sec-clean}</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>本章介绍数据清洗的完整流程，包括缺失值处理、日期格式统一、重复值删除、离群值标注等步骤。</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 清洗流程概览</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 清洗步骤 <span class="pp">|</span> 具体要求 <span class="pp">|</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|---------|</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值检测 <span class="pp">|</span> 统计每列缺失值的数量和比例 <span class="pp">|</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值处理 <span class="pp">|</span> 向前填充（ffill）为主 <span class="pp">|</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 日期格式统一 <span class="pp">|</span> 转换为datetime64格式 <span class="pp">|</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据类型检查 <span class="pp">|</span> 确认价格、成交量为数值型 <span class="pp">|</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 重复值处理 <span class="pp">|</span> 检测并删除重复行 <span class="pp">|</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 离群值标注 <span class="pp">|</span> 标注涨跌幅超过±20%的记录 <span class="pp">|</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## 缺失值检测</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计缺失值</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, df <span class="kw">in</span> stock_data.items():</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    missing_count <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">: 缺失值 </span><span class="sc">{</span>missing_count<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检测结果</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>本次数据无缺失值，数据质量良好。</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### 缺失值可能原因</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**停牌**：股票因重大事项停牌期间没有交易数据</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**节假日**：A股市场在法定节假日不开盘</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**数据源问题**：akshare接口可能存在数据缺失</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**新股上市**：部分股票可能在2020年后才上市</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## 缺失值处理</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>采用向前填充（ffill）为主，向后填充（bfill）为辅的方法：</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 向前填充</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.ffill()</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果仍有缺失值（开头部分），用向后填充</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.bfill()</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>**处理理由**：向前填充使用历史数据填补当前缺失，不会引入未来信息，对于时间序列金融数据更为合适。</span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 日期格式统一</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换为datetime格式</span></span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 设为索引</span></span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>所有股票数据日期已统一为datetime64格式并设为索引。</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据类型检查</span></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查各列数据类型</span></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [<span class="st">'open'</span>, <span class="st">'close'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'volume'</span>, <span class="st">'amount'</span>]</span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df[col].dtype <span class="op">==</span> <span class="st">'object'</span>:</span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>        df[col] <span class="op">=</span> pd.to_numeric(df[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>所有数值列已确认为float64类型。</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## 重复值处理</span></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="co"># 检测重复日期</span></span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> df.index.duplicated().<span class="bu">sum</span>()</span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除重复行</span></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[<span class="op">~</span>df.index.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>本次数据无重复记录。</span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## 离群值标注</span></span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>计算日收益率并标注极端波动：</span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'return'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].pct_change()</span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注离群值（单日涨跌幅超过±20%）</span></span>
-<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'is_extreme'</span>] <span class="op">=</span> df[<span class="st">'return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.20</span></span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a>**极端波动原因分析**：</span>
-<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>涨跌停板限制：A股涨跌停限制为10%/20%</span>
-<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>复牌交易：长期停牌后复牌可能出现大幅波动</span>
-<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>市场异常：极端市场事件（如2020年初疫情冲击）</span>
-<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## 宽表与长表转换</span></span>
-<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### 创建宽表</span></span>
-<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="co"># 收盘价宽表：日期为索引，每列一只股票</span></span>
-<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a>close_prices <span class="op">=</span> {code: df[<span class="st">'close'</span>] <span class="cf">for</span> code, df <span class="kw">in</span> cleaned_stock_data.items()}</span>
-<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a>wide_df <span class="op">=</span> pd.DataFrame(close_prices)</span>
-<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### 转换为长表</span></span>
-<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用pd.melt转换</span></span>
-<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> wide_df.reset_index().melt(</span>
-<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">'date'</span>,</span>
-<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'code'</span>,</span>
-<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'close'</span></span>
-<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### 适用场景分析</span></span>
-<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a>**宽表适用场景**：</span>
-<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>多股票对比分析：直接比较不同股票在同一时点的价格</span>
-<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>相关性分析：计算股票间的相关系数矩阵</span>
-<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>可视化绑图：使用matplotlib绑制多股票走势图</span>
-<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>投资组合分析：计算组合收益率、波动率等</span>
-<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a>**长表适用场景**：</span>
-<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>数据分组操作：按股票代码分组进行统计分析</span>
-<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>数据库存储：符合数据库范式设计，便于SQL查询</span>
-<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>ggplot绑图：适合使用seaborn等工具绑制分面图</span>
-<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>数据清洗：统一处理所有股票的缺失值、异常值</span>
-<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>面板数据分析：适合固定效应模型等计量分析</span>
-<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## 多表合并</span></span>
-<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### 股票与指数合并</span></span>
-<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="co"># 将个股数据与沪深300数据按日期合并</span></span>
-<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(hs300_data, on<span class="op">=</span><span class="st">'date'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a><span class="fu">### 宏观数据合并</span></span>
-<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加年月列用于合并</span></span>
-<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a>long_df[<span class="st">'year_month'</span>] <span class="op">=</span> long_df[<span class="st">'date'</span>].dt.strftime(<span class="st">'%Y-%m'</span>)</span>
-<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并CPI数据</span></span>
-<span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(cpi_df, on<span class="op">=</span><span class="st">'year_month'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>**频率处理**：宏观数据为月度，通过年月列映射到每个交易日。</span>
-<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据存储</span></span>
-<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### CSV格式（基础）</span></span>
-<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存为CSV</span></span>
-<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>long_df.to_csv(<span class="st">'data/combined/combined_data.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parquet格式（进阶）</span></span>
-<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存为Parquet</span></span>
-<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a>long_df.to_parquet(<span class="st">'data/clean/stock_clean.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a><span class="fu">### 格式对比</span></span>
-<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 格式 <span class="pp">|</span> 文件大小 <span class="pp">|</span> 读取速度 <span class="pp">|</span> 类型安全 <span class="pp">|</span></span>
-<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|---------|---------|</span></span>
-<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CSV <span class="pp">|</span> 1656.0 KB <span class="pp">|</span> 0.013s <span class="pp">|</span> 无 <span class="pp">|</span></span>
-<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parquet <span class="pp">|</span> 693.2 KB <span class="pp">|</span> 0.157s <span class="pp">|</span> 有 <span class="pp">|</span></span>
-<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>**体积压缩率**：Parquet比CSV小约58%。</span>
-<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
-<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>本章完成了以下数据清洗工作：</span>
-<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>缺失值检测与处理</span>
-<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>日期格式统一</span>
-<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>数据类型检查与转换</span>
-<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>重复值处理</span>
-<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>离群值标注</span>
-<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>宽表与长表转换</span>
-<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>多表合并</span>
-<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>数据存储（CSV + Parquet）</span>
-<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>下一章将进行描述性统计与可视化分析。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 数据清洗 {#sec-clean}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>本章介绍数据清洗的完整流程，包括缺失值处理、日期格式统一、重复值删除、离群值标注等步骤。</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## 清洗流程概览</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 步骤 <span class="pp">|</span> 具体要求 <span class="pp">|</span> 清洗前 <span class="pp">|</span> 清洗后 <span class="pp">|</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|--------|--------|</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值检测 <span class="pp">|</span> 统计每列缺失值数量和比例 <span class="pp">|</span> 见下表 <span class="pp">|</span> 无缺失值 <span class="pp">|</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值处理 <span class="pp">|</span> 向前填充（ffill） <span class="pp">|</span> - <span class="pp">|</span> 已填充 <span class="pp">|</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 日期格式统一 <span class="pp">|</span> 转换为datetime64格式 <span class="pp">|</span> 字符串 <span class="pp">|</span> datetime64 <span class="pp">|</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据类型检查 <span class="pp">|</span> 确认为数值型 <span class="pp">|</span> 已正确 <span class="pp">|</span> 已正确 <span class="pp">|</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 重复值处理 <span class="pp">|</span> 检测并删除重复行 <span class="pp">|</span> 0条重复 <span class="pp">|</span> 0条重复 <span class="pp">|</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 离群值标注 <span class="pp">|</span> 标注涨跌幅&gt;±20%的记录 <span class="pp">|</span> 未标注 <span class="pp">|</span> 已标注 <span class="pp">|</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## 缺失值检测</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检测方法</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计缺失值</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>missing_summary <span class="op">=</span> {}</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, df <span class="kw">in</span> stock_data.items():</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    missing_count <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    total_cells <span class="op">=</span> df.shape[<span class="dv">0</span>] <span class="op">*</span> df.shape[<span class="dv">1</span>]</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    missing_pct <span class="op">=</span> missing_count <span class="op">/</span> total_cells <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    missing_summary[code] <span class="op">=</span> {</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">'missing_count'</span>: missing_count,</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">'missing_pct'</span>: missing_pct</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">: 缺失值 </span><span class="sc">{</span>missing_count<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>missing_pct<span class="sc">:.2f}</span><span class="ss">%)"</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检测结果</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票代码 <span class="pp">|</span> 缺失值数量 <span class="pp">|</span> 缺失比例 <span class="pp">|</span> 数据质量 <span class="pp">|</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-----------|----------|----------|</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600036 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601398 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002594 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600104 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000002 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600519 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000858 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601857 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000063 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002352 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span> 优秀 <span class="pp">|</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据质量良好</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>本次数据无缺失值，akshare数据源质量较高。但仍需了解缺失值的可能原因和处理方法。</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### 缺失值可能原因</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 原因 <span class="pp">|</span> 说明 <span class="pp">|</span> 示例 <span class="pp">|</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|------|</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 停牌 <span class="pp">|</span> 股票因重大事项停牌期间没有交易数据 <span class="pp">|</span> 重组、并购等 <span class="pp">|</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 节假日 <span class="pp">|</span> A股市场在法定节假日不开盘 <span class="pp">|</span> 春节、国庆等 <span class="pp">|</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据源问题 <span class="pp">|</span> akshare接口可能存在数据缺失 <span class="pp">|</span> 网络中断、服务器故障 <span class="pp">|</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 新股上市 <span class="pp">|</span> 部分股票可能在2020年后才上市 <span class="pp">|</span> 注册制新股 <span class="pp">|</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## 缺失值处理</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>采用向前填充（ffill）为主，向后填充（bfill）为辅的方法：</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> handle_missing_values(df):</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""处理缺失值"""</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 记录处理前的缺失值数量</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>    before <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 向前填充（使用历史数据）</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.ffill()</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 如果仍有缺失值（开头部分），用向后填充</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.bfill()</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 记录处理后的缺失值数量</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>    after <span class="op">=</span> df.isna().<span class="bu">sum</span>().<span class="bu">sum</span>()</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df, before, after</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### 处理结果</span></span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 指标 <span class="pp">|</span> 处理前 <span class="pp">|</span> 处理后 <span class="pp">|</span> 变化 <span class="pp">|</span></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|--------|--------|------|</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值总数 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 无变化 <span class="pp">|</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据行数 <span class="pp">|</span> 1515 <span class="pp">|</span> 1515 <span class="pp">|</span> 无变化 <span class="pp">|</span></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## 填充方法选择理由</span></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>**向前填充（ffill）**更适合时间序列金融数据：</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>使用历史数据填补当前缺失，不会引入未来信息</span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>保持价格/成交量的连续性</span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>避免人为制造的价格跳变</span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>**向后填充（bfill）**仅用于处理序列开头的缺失值。</span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## 日期格式统一</span></span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### 统一方法</span></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换为datetime格式</span></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a><span class="co"># 设为索引</span></span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证日期格式</span></span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"日期类型: </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"日期范围: </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> 至 </span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### 统一结果</span></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 项目 <span class="pp">|</span> 统一前 <span class="pp">|</span> 统一后 <span class="pp">|</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|--------|--------|</span></span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据类型 <span class="pp">|</span> object（字符串） <span class="pp">|</span> datetime64<span class="co">[</span><span class="ot">ns</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 日期格式 <span class="pp">|</span> '2020-01-02' <span class="pp">|</span> 2020-01-02 00<span class="sc">:00:</span>00 <span class="pp">|</span></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 索引设置 <span class="pp">|</span> 普通列 <span class="pp">|</span> DataFrame索引 <span class="pp">|</span></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据类型检查</span></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检查方法</span></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查各列数据类型</span></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> [<span class="st">'open'</span>, <span class="st">'close'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'volume'</span>, <span class="st">'amount'</span>]</span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_cols:</span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df[col].dtype <span class="op">==</span> <span class="st">'object'</span>:</span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a>        df[col] <span class="op">=</span> pd.to_numeric(df[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: 字符串转换为数值型"</span>)</span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">: 已是 </span><span class="sc">{</span>df[col]<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss"> 类型"</span>)</span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检查结果</span></span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 列名 <span class="pp">|</span> 数据类型 <span class="pp">|</span> 说明 <span class="pp">|</span></span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|----------|------|</span></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> open <span class="pp">|</span> float64 <span class="pp">|</span> 开盘价 <span class="pp">|</span></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> close <span class="pp">|</span> float64 <span class="pp">|</span> 收盘价 <span class="pp">|</span></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> high <span class="pp">|</span> float64 <span class="pp">|</span> 最高价 <span class="pp">|</span></span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> low <span class="pp">|</span> float64 <span class="pp">|</span> 最低价 <span class="pp">|</span></span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> volume <span class="pp">|</span> float64 <span class="pp">|</span> 成交量 <span class="pp">|</span></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> amount <span class="pp">|</span> float64 <span class="pp">|</span> 成交额 <span class="pp">|</span></span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>所有数值列已确认为float64类型，数据类型检查通过。</span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## 重复值处理</span></span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a><span class="fu">### 检测方法</span></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a><span class="co"># 检测重复日期</span></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> df.index.duplicated().<span class="bu">sum</span>()</span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"重复日期数量: </span><span class="sc">{</span>duplicates<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除重复行（保留第一条）</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> duplicates <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df[<span class="op">~</span>df.index.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"已删除 </span><span class="sc">{</span>duplicates<span class="sc">}</span><span class="ss"> 条重复记录"</span>)</span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### 处理结果</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票代码 <span class="pp">|</span> 重复记录数 <span class="pp">|</span> 删除数量 <span class="pp">|</span> 处理后行数 <span class="pp">|</span></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-----------|----------|-----------|</span></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600036 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601398 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002594 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600104 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000002 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600519 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000858 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601857 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1515 <span class="pp">|</span></span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000063 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1514 <span class="pp">|</span></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002352 <span class="pp">|</span> 0 <span class="pp">|</span> 0 <span class="pp">|</span> 1512 <span class="pp">|</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>本次数据无重复记录。</span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## 离群值标注</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>计算日收益率并标注极端波动：</span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a><span class="fu">### 标注方法</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'return'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].pct_change()</span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a><span class="co"># 标注离群值（单日涨跌幅超过±20%）</span></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'is_extreme'</span>] <span class="op">=</span> df[<span class="st">'return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.20</span></span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计离群值</span></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a>extreme_count <span class="op">=</span> df[<span class="st">'is_extreme'</span>].<span class="bu">sum</span>()</span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"极端波动记录: </span><span class="sc">{</span>extreme_count<span class="sc">}</span><span class="ss"> 条 (</span><span class="sc">{</span>extreme_count<span class="op">/</span><span class="bu">len</span>(df)<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%)"</span>)</span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a><span class="fu">### 标注结果</span></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票代码 <span class="pp">|</span> 极端波动天数 <span class="pp">|</span> 占比 <span class="pp">|</span></span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|-------------|------|</span></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600036 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span></span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601398 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span></span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002594 <span class="pp">|</span> 2 <span class="pp">|</span> 0.13% <span class="pp">|</span></span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600104 <span class="pp">|</span> 1 <span class="pp">|</span> 0.07% <span class="pp">|</span></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000002 <span class="pp">|</span> 3 <span class="pp">|</span> 0.20% <span class="pp">|</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 600519 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000858 <span class="pp">|</span> 0 <span class="pp">|</span> 0.00% <span class="pp">|</span></span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 601857 <span class="pp">|</span> 1 <span class="pp">|</span> 0.07% <span class="pp">|</span></span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 000063 <span class="pp">|</span> 2 <span class="pp">|</span> 0.13% <span class="pp">|</span></span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 002352 <span class="pp">|</span> 1 <span class="pp">|</span> 0.07% <span class="pp">|</span></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## 极端波动原因分析</span></span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**涨跌停板限制**：A股涨跌停限制为10%（主板）/20%（创业板、科创板）</span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**复牌交易**：长期停牌后复牌可能出现大幅波动</span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**市场异常**：极端市场事件（如2020年初疫情冲击）</span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**除权除息**：分红派息后股价调整</span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## 宽表与长表转换</span></span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### 创建宽表</span></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a>收盘价宽表：日期为索引，每列一只股票</span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a><span class="co"># 收盘价宽表</span></span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a>close_prices <span class="op">=</span> {code: df[<span class="st">'close'</span>] <span class="cf">for</span> code, df <span class="kw">in</span> cleaned_stock_data.items()}</span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a>wide_df <span class="op">=</span> pd.DataFrame(close_prices)</span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"宽表维度: </span><span class="sc">{</span>wide_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a>**宽表结构**：</span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 日期 <span class="pp">|</span> 招商银行 <span class="pp">|</span> 工商银行 <span class="pp">|</span> 比亚迪 <span class="pp">|</span> ... <span class="pp">|</span></span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|----------|----------|--------|-----|</span></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2020-01-02 <span class="pp">|</span> 35.21 <span class="pp">|</span> 5.43 <span class="pp">|</span> 45.67 <span class="pp">|</span> ... <span class="pp">|</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2020-01-03 <span class="pp">|</span> 35.45 <span class="pp">|</span> 5.41 <span class="pp">|</span> 46.12 <span class="pp">|</span> ... <span class="pp">|</span></span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### 转换为长表</span></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用pd.melt转换</span></span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> wide_df.reset_index().melt(</span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'code'</span>,</span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'close'</span></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"长表维度: </span><span class="sc">{</span>long_df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a>**长表结构**：</span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> date <span class="pp">|</span> code <span class="pp">|</span> close <span class="pp">|</span></span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-------|</span></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2020-01-02 <span class="pp">|</span> 招商银行 <span class="pp">|</span> 35.21 <span class="pp">|</span></span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2020-01-02 <span class="pp">|</span> 工商银行 <span class="pp">|</span> 5.43 <span class="pp">|</span></span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2020-01-02 <span class="pp">|</span> 比亚迪 <span class="pp">|</span> 45.67 <span class="pp">|</span></span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### 适用场景分析</span></span>
+<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a><span class="fu">## 宽表 vs 长表</span></span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a>**宽表适用场景**：</span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>多股票对比分析：直接比较不同股票在同一时点的价格</span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>相关性分析：计算股票间的相关系数矩阵</span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>可视化绑图：使用matplotlib绑制多股票走势图</span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>投资组合分析：计算组合收益率、波动率等</span>
+<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a>**长表适用场景**：</span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>数据分组操作：按股票代码分组进行统计分析</span>
+<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>数据库存储：符合数据库范式设计，便于SQL查询</span>
+<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>ggplot绑图：适合使用seaborn等工具绑制分面图</span>
+<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>数据清洗：统一处理所有股票的缺失值、异常值</span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>面板数据分析：适合固定效应模型等计量分析</span>
+<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a><span class="fu">## 多表合并</span></span>
+<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### 股票与指数合并</span></span>
+<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-297"><a href="#cb14-297" aria-hidden="true" tabindex="-1"></a><span class="co"># 将个股数据与沪深300数据按日期合并</span></span>
+<span id="cb14-298"><a href="#cb14-298" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(</span>
+<span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a>    hs300_data[[<span class="st">'date'</span>, <span class="st">'close'</span>]],</span>
+<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'date'</span>,</span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span>,</span>
+<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a>    suffixes<span class="op">=</span>(<span class="st">''</span>, <span class="st">'_hs300'</span>)</span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a>**合并结果**：</span>
+<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 合并前行数 <span class="pp">|</span> 合并后行数 <span class="pp">|</span> 变化 <span class="pp">|</span></span>
+<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|-----------|------|</span></span>
+<span id="cb14-310"><a href="#cb14-310" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 15150 <span class="pp">|</span> 15150 <span class="pp">|</span> 无变化 <span class="pp">|</span></span>
+<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a><span class="fu">### 宏观数据合并</span></span>
+<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加年月列用于合并</span></span>
+<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a>long_df[<span class="st">'year_month'</span>] <span class="op">=</span> long_df[<span class="st">'date'</span>].dt.strftime(<span class="st">'%Y-%m'</span>)</span>
+<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-318"><a href="#cb14-318" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并CPI数据</span></span>
+<span id="cb14-319"><a href="#cb14-319" aria-hidden="true" tabindex="-1"></a>long_df <span class="op">=</span> long_df.merge(</span>
+<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a>    cpi_df,</span>
+<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'year_month'</span>,</span>
+<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a><span class="fu">## 频率处理</span></span>
+<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-329"><a href="#cb14-329" aria-hidden="true" tabindex="-1"></a>宏观数据为月度，股票数据为日度。处理方法：</span>
+<span id="cb14-330"><a href="#cb14-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>将月度宏观数据映射到对应月份的每个交易日</span>
+<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>使用<span class="in">`year_month`</span>列进行合并</span>
+<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>同一月份的所有交易日共享同一个宏观指标值</span>
+<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-335"><a href="#cb14-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-336"><a href="#cb14-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## 数据存储</span></span>
+<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-338"><a href="#cb14-338" aria-hidden="true" tabindex="-1"></a><span class="fu">### CSV格式（基础）</span></span>
+<span id="cb14-339"><a href="#cb14-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-340"><a href="#cb14-340" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-341"><a href="#cb14-341" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存为CSV</span></span>
+<span id="cb14-342"><a href="#cb14-342" aria-hidden="true" tabindex="-1"></a>long_df.to_csv(<span class="st">'data/combined/combined_data.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-343"><a href="#cb14-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-344"><a href="#cb14-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-345"><a href="#cb14-345" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parquet格式（进阶）</span></span>
+<span id="cb14-346"><a href="#cb14-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-347"><a href="#cb14-347" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-348"><a href="#cb14-348" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存为Parquet</span></span>
+<span id="cb14-349"><a href="#cb14-349" aria-hidden="true" tabindex="-1"></a>long_df.to_parquet(<span class="st">'data/clean/stock_clean.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-350"><a href="#cb14-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-351"><a href="#cb14-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-352"><a href="#cb14-352" aria-hidden="true" tabindex="-1"></a><span class="fu">### 格式对比</span></span>
+<span id="cb14-353"><a href="#cb14-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-354"><a href="#cb14-354" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV读取测试</span></span>
+<span id="cb14-358"><a href="#cb14-358" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb14-359"><a href="#cb14-359" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"data/clean/stock_clean.csv"</span>)</span>
+<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a>csv_time <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
+<span id="cb14-361"><a href="#cb14-361" aria-hidden="true" tabindex="-1"></a>csv_size <span class="op">=</span> os.path.getsize(<span class="st">'data/clean/stock_clean.csv'</span>) <span class="op">/</span> <span class="dv">1024</span></span>
+<span id="cb14-362"><a href="#cb14-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-363"><a href="#cb14-363" aria-hidden="true" tabindex="-1"></a><span class="co"># Parquet读取测试</span></span>
+<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a>df_parquet <span class="op">=</span> pd.read_parquet(<span class="st">"data/clean/stock_clean.parquet"</span>)</span>
+<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a>parquet_time <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
+<span id="cb14-367"><a href="#cb14-367" aria-hidden="true" tabindex="-1"></a>parquet_size <span class="op">=</span> os.path.getsize(<span class="st">'data/clean/stock_clean.parquet'</span>) <span class="op">/</span> <span class="dv">1024</span></span>
+<span id="cb14-368"><a href="#cb14-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-369"><a href="#cb14-369" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CSV:   读取耗时 </span><span class="sc">{</span>csv_time<span class="sc">:.3f}</span><span class="ss">s, 文件大小 </span><span class="sc">{</span>csv_size<span class="sc">:.1f}</span><span class="ss"> KB"</span>)</span>
+<span id="cb14-370"><a href="#cb14-370" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Parquet: 读取耗时 </span><span class="sc">{</span>parquet_time<span class="sc">:.3f}</span><span class="ss">s, 文件大小 </span><span class="sc">{</span>parquet_size<span class="sc">:.1f}</span><span class="ss"> KB"</span>)</span>
+<span id="cb14-371"><a href="#cb14-371" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-372"><a href="#cb14-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-373"><a href="#cb14-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 格式 <span class="pp">|</span> 文件大小 <span class="pp">|</span> 读取速度 <span class="pp">|</span> 类型安全 <span class="pp">|</span> 列式读取 <span class="pp">|</span></span>
+<span id="cb14-374"><a href="#cb14-374" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------|---------|---------|---------|</span></span>
+<span id="cb14-375"><a href="#cb14-375" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CSV <span class="pp">|</span> 1656.0 KB <span class="pp">|</span> 0.013s <span class="pp">|</span> 无 <span class="pp">|</span> 不支持 <span class="pp">|</span></span>
+<span id="cb14-376"><a href="#cb14-376" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Parquet <span class="pp">|</span> 693.2 KB <span class="pp">|</span> 0.157s <span class="pp">|</span> 有 <span class="pp">|</span> 支持 <span class="pp">|</span></span>
+<span id="cb14-377"><a href="#cb14-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-378"><a href="#cb14-378" aria-hidden="true" tabindex="-1"></a>**体积压缩率**：Parquet比CSV小约**58%**。</span>
+<span id="cb14-379"><a href="#cb14-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-380"><a href="#cb14-380" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb14-381"><a href="#cb14-381" aria-hidden="true" tabindex="-1"></a><span class="fu">## 本次数据规模下的格式差异</span></span>
+<span id="cb14-382"><a href="#cb14-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-383"><a href="#cb14-383" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**文件体积**：Parquet明显更小（58%压缩率）</span>
+<span id="cb14-384"><a href="#cb14-384" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**读取速度**：CSV更快（数据量小）</span>
+<span id="cb14-385"><a href="#cb14-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**应用建议**：大数据场景下Parquet优势更明显</span>
+<span id="cb14-386"><a href="#cb14-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-387"><a href="#cb14-387" aria-hidden="true" tabindex="-1"></a>**何时选择Parquet**：</span>
+<span id="cb14-388"><a href="#cb14-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-389"><a href="#cb14-389" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>数据量超过1GB</span>
+<span id="cb14-390"><a href="#cb14-390" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>需要频繁读取部分列</span>
+<span id="cb14-391"><a href="#cb14-391" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>需要与其他大数据工具（Spark）集成</span>
+<span id="cb14-392"><a href="#cb14-392" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>需要保留Schema信息</span>
+<span id="cb14-393"><a href="#cb14-393" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-394"><a href="#cb14-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-395"><a href="#cb14-395" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
+<span id="cb14-396"><a href="#cb14-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a>本章完成了以下数据清洗工作：</span>
+<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 步骤 <span class="pp">|</span> 清洗前 <span class="pp">|</span> 清洗后 <span class="pp">|</span> 变化说明 <span class="pp">|</span></span>
+<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|--------|--------|----------|</span></span>
+<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 缺失值检测 <span class="pp">|</span> - <span class="pp">|</span> 0个缺失值 <span class="pp">|</span> 数据质量良好 <span class="pp">|</span></span>
+<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 日期格式 <span class="pp">|</span> 字符串 <span class="pp">|</span> datetime64 <span class="pp">|</span> 便于时间序列分析 <span class="pp">|</span></span>
+<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据类型 <span class="pp">|</span> 已正确 <span class="pp">|</span> 已正确 <span class="pp">|</span> 无需转换 <span class="pp">|</span></span>
+<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 重复值 <span class="pp">|</span> 0条 <span class="pp">|</span> 0条 <span class="pp">|</span> 无重复记录 <span class="pp">|</span></span>
+<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 离群值 <span class="pp">|</span> 未标注 <span class="pp">|</span> 已标注 <span class="pp">|</span> 添加is_extreme列 <span class="pp">|</span></span>
+<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 宽表长表 <span class="pp">|</span> 分离 <span class="pp">|</span> 已转换 <span class="pp">|</span> 便于不同分析 <span class="pp">|</span></span>
+<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 多表合并 <span class="pp">|</span> 分散 <span class="pp">|</span> 已合并 <span class="pp">|</span> 综合数据集 <span class="pp">|</span></span>
+<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 数据存储 <span class="pp">|</span> - <span class="pp">|</span> CSV+Parquet <span class="pp">|</span> 双格式存储 <span class="pp">|</span></span>
+<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a>下一章将进行描述性统计与可视化分析。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>P01：金融数据获取、管理与初步分析</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/02-clean.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>由Quarto构建</p>
+</div>
+  </div>
+</footer>
 
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

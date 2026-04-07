@@ -1,16 +1,31 @@
 # 数据获取 {#sec-download}
 
-本章介绍如何使用Python和akshare获取金融数据。
+本章介绍如何使用Python和akshare获取金融数据，涵盖股票行情、市场指数、宏观经济指标和财务指标四类数据。
 
 ## 数据源选择
 
 本次作业选择 **akshare** 作为数据源，原因如下：
 
-- **免费**：无需注册，无需付费
+::: {.callout-note}
+## akshare优势
+
+- **免费**：无需注册，无需付费，开箱即用
 - **覆盖广**：涵盖股票、指数、基金、期货、外汇等多种金融数据
 - **接口简单**：Python API友好，便于程序化获取
+- **社区活跃**：持续更新，文档完善
+:::
+
+其他可选数据源对比：
+
+| 工具 | 特点 | 参考接口 |
+|------|------|---------|
+| `akshare` | 免费，无需注册，覆盖广 | `ak.stock_zh_a_hist()` |
+| `baostock` | 免费，需登录，数据稳定 | `bs.query_history_k_data_plus()` |
+| `tushare` | 需注册获取token，数据丰富 | `pro.daily()` |
 
 ## 环境准备
+
+### 导入库
 
 ```python
 # 导入必要的库
@@ -18,9 +33,33 @@ import akshare as ak
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import os
+import logging
 
 # 打印版本信息
 print(f"akshare版本: {ak.__version__}")
+print(f"pandas版本: {pd.__version__}")
+```
+
+### 创建目录结构
+
+使用Python代码自动创建项目目录结构：
+
+```python
+# 创建数据目录
+directories = [
+    'data/stock',
+    'data/index',
+    'data/macro',
+    'data/finance',
+    'data/clean',
+    'data/combined',
+    'output'
+]
+
+for d in directories:
+    os.makedirs(d, exist_ok=True)
+    print(f"创建目录: {d}")
 ```
 
 ## 股票数据下载
@@ -44,35 +83,79 @@ stock_list = [
 ]
 ```
 
+::: {.callout-tip}
+## 选股原则
+
+- 覆盖至少5个行业（实际覆盖7个）
+- 每个行业至多2只股票
+- 优先选择行业龙头，确保代表性和流动性
+:::
+
 ### 下载函数
 
+定义带日志记录的下载函数：
+
 ```python
-def download_stock_data(stock_code, start_date, end_date):
+def download_stock_data(stock_code, stock_name, start_date, end_date, log_file):
     """下载单只股票的后复权日度行情数据"""
-    df = ak.stock_zh_a_hist(
-        symbol=stock_code,
-        period="daily",
-        start_date=start_date,
-        end_date=end_date,
-        adjust="hfq"  # 后复权
+    try:
+        df = ak.stock_zh_a_hist(
+            symbol=stock_code,
+            period="daily",
+            start_date=start_date,
+            end_date=end_date,
+            adjust="hfq"  # 后复权
+        )
+
+        # 记录成功日志
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(log_file, 'a', encoding='utf-8') as f:
+            f.write(f"[{timestamp}] SUCCESS  stock_{stock_code}  shape={df.shape}\n")
+
+        return df
+    except Exception as e:
+        # 记录失败日志
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(log_file, 'a', encoding='utf-8') as f:
+            f.write(f"[{timestamp}] FAILED   stock_{stock_code}  Error: {str(e)}\n")
+        return None
+```
+
+### 批量下载
+
+```python
+start_date = "20200101"
+end_date = datetime.now().strftime("%Y%m%d")
+log_file = "download_log.txt"
+
+for stock in stock_list:
+    df = download_stock_data(
+        stock['code'],
+        stock['name'],
+        start_date,
+        end_date,
+        log_file
     )
-    return df
+    if df is not None:
+        # 保存到CSV
+        df.to_csv(f"data/stock/stock_{stock['code']}.csv", index=False)
+        print(f"{stock['name']}: 下载成功，{len(df)}条记录")
 ```
 
 ### 下载结果
 
-| 股票 | 代码 | 数据行数 |
-|------|------|---------|
-| 招商银行 | 600036 | 1515 |
-| 工商银行 | 601398 | 1515 |
-| 比亚迪 | 002594 | 1515 |
-| 上汽集团 | 600104 | 1515 |
-| 万科A | 000002 | 1515 |
-| 贵州茅台 | 600519 | 1515 |
-| 五粮液 | 000858 | 1515 |
-| 中国石油 | 601857 | 1515 |
-| 中兴通讯 | 000063 | 1514 |
-| 顺丰控股 | 002352 | 1512 |
+| 股票 | 代码 | 数据行数 | 状态 |
+|------|------|---------|------|
+| 招商银行 | 600036 | 1515 | ✓ |
+| 工商银行 | 601398 | 1515 | ✓ |
+| 比亚迪 | 002594 | 1515 | ✓ |
+| 上汽集团 | 600104 | 1515 | ✓ |
+| 万科A | 000002 | 1515 | ✓ |
+| 贵州茅台 | 600519 | 1515 | ✓ |
+| 五粮液 | 000858 | 1515 | ✓ |
+| 中国石油 | 601857 | 1515 | ✓ |
+| 中兴通讯 | 000063 | 1514 | ✓ |
+| 顺丰控股 | 002352 | 1512 | ✓ |
 
 ## 指数数据下载
 
@@ -81,54 +164,134 @@ def download_stock_data(stock_code, start_date, end_date):
 ```python
 # 沪深300作为CAPM市场基准
 hs300 = ak.stock_zh_index_daily(symbol="sh000300")
+hs300.to_csv("data/index/index_000300.csv", index=False)
+print(f"沪深300: {len(hs300)}条记录")
 
 # 中证500代表中小盘股票
 zz500 = ak.stock_zh_index_daily(symbol="sh000905")
+zz500.to_csv("data/index/index_000905.csv", index=False)
+print(f"中证500: {len(zz500)}条记录")
 ```
+
+### 指数选择说明
+
+| 指数 | 代码 | 用途 |
+|------|------|------|
+| 沪深300 | 000300 | CAPM模型市场基准，代表A股大盘股 |
+| 中证500 | 000905 | 代表A股中小盘股票，与沪深300形成互补 |
 
 ## 宏观数据下载
 
 ### CPI同比增速
 
 ```python
+# 下载CPI同比增速
 cpi = ak.macro_china_cpi_yearly()
+cpi.to_csv("data/macro/macro_cpi.csv", index=False)
+print(f"CPI数据: {len(cpi)}条记录")
 ```
 
-CPI同比增速反映通货膨胀水平，影响货币政策和股票估值。
+::: {.callout-note}
+## CPI与股市的关系
+
+CPI同比增速反映通货膨胀水平：
+
+- **高通胀**：可能导致货币政策收紧，对股市形成压力
+- **低通胀**：通常有利于股市表现
+- **行业差异**：不同行业对通胀的敏感度不同
+:::
 
 ### M2同比增速
 
 ```python
+# 下载M2同比增速
 m2 = ak.macro_china_m2_yearly()
+m2.to_csv("data/macro/macro_m2.csv", index=False)
+print(f"M2数据: {len(m2)}条记录")
 ```
 
-M2同比增速反映货币供应量变化，与股市流动性密切相关。
+M2同比增速反映货币供应量变化，与股市流动性密切相关。货币供应增加通常利好股市。
 
 ## 财务数据下载
 
+### 获取财务指标
+
 ```python
-# 获取财务摘要数据
-finance = ak.stock_financial_abstract(symbol="600036")
+# 定义财务指标列表
+finance_indicators = ['ROE', '净利润率']
+all_finance_data = []
+
+for stock in stock_list:
+    try:
+        # 获取财务摘要数据
+        df = ak.stock_financial_analysis_indicator(symbol=stock['code'])
+
+        # 筛选所需指标
+        for indicator in finance_indicators:
+            if indicator in df['指标名称'].values:
+                row = df[df['指标名称'] == indicator].iloc[0]
+                all_finance_data.append({
+                    'code': stock['code'],
+                    'name': stock['name'],
+                    'indicator': indicator,
+                    'value': row['值']
+                })
+    except Exception as e:
+        print(f"{stock['name']}: 财务数据获取失败 - {e}")
+
+# 转换为DataFrame并保存
+finance_df = pd.DataFrame(all_finance_data)
+finance_df.to_csv("data/finance/finance_ratios.csv", index=False)
 ```
 
-财务指标包括ROE（净资产收益率）和净利润率，整理为长格式存储。
+### 财务数据格式
+
+财务指标整理为**长格式**（Long format）：
+
+| 字段 | 说明 |
+|------|------|
+| code | 股票代码 |
+| year | 年度 |
+| indicator | 指标名称 |
+| value | 指标值 |
 
 ## 下载日志
 
-所有下载操作均记录到 `download_log.txt` 文件中，格式如下：
+所有下载操作均记录到 `download_log.txt` 文件中：
 
 ```
 [2026-04-07 22:23:02] SUCCESS  stock_600036  shape=(1515, 7)
 [2026-04-07 22:23:03] SUCCESS  stock_601398  shape=(1515, 7)
+[2026-04-07 22:23:05] SUCCESS  stock_002594  shape=(1515, 7)
+...
 ```
+
+日志格式说明：
+
+| 字段 | 示例 | 说明 |
+|------|------|------|
+| 时间戳 | 2026-04-07 22:23:02 | 下载时间 |
+| 状态 | SUCCESS/FAILED | 下载结果 |
+| 数据标识 | stock_600036 | 数据类型和代码 |
+| 详情 | shape=(1515, 7) | 数据维度或错误信息 |
 
 ## 小结
 
 本章完成了以下数据获取工作：
 
-1. 10只A股股票的后复权日度行情数据
-2. 沪深300和中证500指数数据
-3. CPI和M2宏观经济指标
-4. 财务指标数据（ROE、净利润率）
+| 数据类型 | 数量 | 来源 | 时间范围 |
+|----------|------|------|----------|
+| 股票行情 | 10只 | akshare | 2020-01-01至今 |
+| 市场指数 | 2只 | akshare | 同上 |
+| 宏观指标 | 2项 | akshare | 月度数据 |
+| 财务指标 | 2类 | akshare | 年度数据 |
+
+::: {.callout-warning}
+## 注意事项
+
+1. akshare接口可能因服务器维护而暂时不可用
+2. 部分股票可能因停牌等原因数据不完整
+3. 下载日志是问题排查的重要依据
+:::
 
 下一章将介绍数据清洗工作。

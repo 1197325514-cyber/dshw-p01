@@ -76,10 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-230298c4cd7d17908372e99c35fbc3fa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,9 +143,172 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -149,7 +317,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-capm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-analysis.html">分析篇</a></li><li class="breadcrumb-item"><a href="../chapters/04-capm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,6 +333,33 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">P01：金融数据获取、管理与初步分析</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/1197325514-cyber/dshw-p01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -180,36 +375,58 @@ window.Quarto = {
  <span class="menu-text">前言</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">数据篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-download.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据获取</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-clean.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">分析篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">描述性统计与可视化</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-capm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-macro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summary.html" class="sidebar-item-text sidebar-link">
@@ -230,10 +447,12 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#模型形式" id="toc-模型形式" class="nav-link" data-scroll-target="#模型形式"><span class="header-section-number">4.1.1</span> 模型形式</a></li>
   <li><a href="#参数设定" id="toc-参数设定" class="nav-link" data-scroll-target="#参数设定"><span class="header-section-number">4.1.2</span> 参数设定</a></li>
+  <li><a href="#beta系数含义" id="toc-beta系数含义" class="nav-link" data-scroll-target="#beta系数含义"><span class="header-section-number">4.1.3</span> Beta系数含义</a></li>
   </ul></li>
   <li><a href="#回归估计" id="toc-回归估计" class="nav-link" data-scroll-target="#回归估计"><span class="header-section-number">4.2</span> 回归估计</a>
   <ul class="collapse">
   <li><a href="#数据准备" id="toc-数据准备" class="nav-link" data-scroll-target="#数据准备"><span class="header-section-number">4.2.1</span> 数据准备</a></li>
+  <li><a href="#ols回归" id="toc-ols回归" class="nav-link" data-scroll-target="#ols回归"><span class="header-section-number">4.2.2</span> OLS回归</a></li>
   </ul></li>
   <li><a href="#回归结果" id="toc-回归结果" class="nav-link" data-scroll-target="#回归结果"><span class="header-section-number">4.3</span> 回归结果</a>
   <ul class="collapse">
@@ -248,12 +467,13 @@ window.Quarto = {
   </ul></li>
   <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">4.5</span> 小结</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/04-capm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-analysis.html">分析篇</a></li><li class="breadcrumb-item"><a href="../chapters/04-capm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span id="sec-capm" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
@@ -272,7 +492,7 @@ window.Quarto = {
 </header>
 
 
-<p>本章使用资本资产定价模型（CAPM）分析各股票的系统风险暴露。</p>
+<p>本章使用资本资产定价模型（CAPM）分析各股票的系统风险暴露，揭示周期性与防御性行业的风险特征。</p>
 <section id="capm模型介绍" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="capm模型介绍"><span class="header-section-number">4.1</span> CAPM模型介绍</h2>
 <section id="模型形式" class="level3" data-number="4.1.1">
@@ -280,26 +500,100 @@ window.Quarto = {
 <p>CAPM模型的基本形式：</p>
 <p><span class="math display">\[r_{i,t} - r_f = \alpha_i + \beta_i (r_{m,t} - r_f) + \varepsilon_{i,t}\]</span></p>
 <p>其中：</p>
-<ul>
-<li><span class="math inline">\(r_{i,t}\)</span>：个股日对数收益率</li>
-<li><span class="math inline">\(r_{m,t}\)</span>：沪深300日对数收益率（市场基准）</li>
-<li><span class="math inline">\(r_f\)</span>：无风险利率</li>
-<li><span class="math inline">\(\alpha_i\)</span>：超额收益（Alpha）</li>
-<li><span class="math inline">\(\beta_i\)</span>：系统风险系数（Beta）</li>
-</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(r_{i,t}\)</span></td>
+<td>个股日对数收益率</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r_{m,t}\)</span></td>
+<td>沪深300日对数收益率（市场基准）</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(r_f\)</span></td>
+<td>无风险利率</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\alpha_i\)</span></td>
+<td>超额收益（Alpha）</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\beta_i\)</span></td>
+<td>系统风险系数（Beta）</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\varepsilon_{i,t}\)</span></td>
+<td>残差项</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="参数设定" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="参数设定"><span class="header-section-number">4.1.2</span> 参数设定</h3>
-<ul>
-<li><strong>无风险利率</strong>：年化2.0%，日频换算：<span class="math inline">\(r_f^{daily} = 0.02 / 252\)</span></li>
-<li><strong>市场基准</strong>：沪深300指数</li>
-</ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 无风险利率设定</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rf_annual <span class="op">=</span> <span class="fl">0.02</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rf_daily <span class="op">=</span> rf_annual <span class="op">/</span> <span class="dv">252</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rf_annual <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># 年化2.0%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rf_daily <span class="op">=</span> rf_annual <span class="op">/</span> <span class="dv">252</span>  <span class="co"># 日频换算</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（年化）: </span><span class="sc">{</span>rf_annual<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（日频）: </span><span class="sc">{</span>rf_daily<span class="op">*</span><span class="dv">100</span><span class="sc">:.4f}</span><span class="ss">%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>无风险利率设定理由
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>年化2.0%</strong>：参考中国10年期国债收益率</li>
+<li><strong>日频换算</strong>：<span class="math inline">\(r_f^{daily} = r_f^{annual} / 252\)</span></li>
+<li><strong>252个交易日</strong>：A股市场年均交易日数量</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="beta系数含义" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="beta系数含义"><span class="header-section-number">4.1.3</span> Beta系数含义</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Beta范围</th>
+<th>风险特征</th>
+<th>投资含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>β &gt; 1.5</td>
+<td>高风险</td>
+<td>牛市涨幅大，熊市跌幅也大</td>
+</tr>
+<tr class="even">
+<td>1.0 &lt; β ≤ 1.5</td>
+<td>中高风险</td>
+<td>市场敏感度高</td>
+</tr>
+<tr class="odd">
+<td>0.5 &lt; β ≤ 1.0</td>
+<td>中低风险</td>
+<td>与市场同步波动</td>
+</tr>
+<tr class="even">
+<td>β ≤ 0.5</td>
+<td>低风险</td>
+<td>防御性强，波动小</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="回归估计" class="level2" data-number="4.2">
@@ -310,11 +604,25 @@ window.Quarto = {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>stock_data[<span class="st">'stock_excess'</span>] <span class="op">=</span> stock_data[<span class="st">'log_return'</span>] <span class="op">-</span> rf_daily</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>market_data[<span class="st">'market_excess'</span>] <span class="op">=</span> market_data[<span class="st">'market_return'</span>] <span class="op">-</span> rf_daily</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS回归</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(merged_data[<span class="st">'market_excess'</span>])</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> merged_data[<span class="st">'stock_excess'</span>]</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并数据</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> stock_data.merge(market_data, on<span class="op">=</span><span class="st">'date'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ols回归" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="ols回归"><span class="header-section-number">4.2.2</span> OLS回归</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 对每只股票进行回归</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stock_name <span class="kw">in</span> stock_names:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    stock_df <span class="op">=</span> merged_data[merged_data[<span class="st">'name'</span>] <span class="op">==</span> stock_name]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 准备回归变量</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> sm.add_constant(stock_df[<span class="st">'market_excess'</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> stock_df[<span class="st">'stock_excess'</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OLS估计</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    results[stock_name] <span class="op">=</span> model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="回归结果" class="level2" data-number="4.3">
@@ -322,15 +630,6 @@ window.Quarto = {
 <section id="capm估计结果" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="capm估计结果"><span class="header-section-number">4.3.1</span> CAPM估计结果</h3>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 25%">
-<col style="width: 7%">
-<col style="width: 23%">
-<col style="width: 12%">
-<col style="width: 11%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>股票</th>
@@ -346,95 +645,96 @@ window.Quarto = {
 <tr class="odd">
 <td>比亚迪</td>
 <td>汽车</td>
-<td>0.001497</td>
-<td>0.0339</td>
+<td>0.00150</td>
+<td>0.034*</td>
 <td>1.2807</td>
-<td>[1.15, 1.41]</td>
+<td>[1.17, 1.39]</td>
 <td>0.3271</td>
 </tr>
 <tr class="even">
 <td>五粮液</td>
 <td>白酒</td>
-<td>0.000088</td>
-<td>0.8388</td>
+<td>0.00009</td>
+<td>0.839</td>
 <td>1.2488</td>
-<td>[1.13, 1.37]</td>
+<td>[1.18, 1.32]</td>
 <td>0.5517</td>
 </tr>
 <tr class="odd">
 <td>中兴通讯</td>
 <td>通讯</td>
-<td>-0.000100</td>
-<td>0.8785</td>
+<td>-0.00010</td>
+<td>0.878</td>
 <td>1.1580</td>
-<td>[1.02, 1.30]</td>
+<td>[1.05, 1.26]</td>
 <td>0.3175</td>
 </tr>
 <tr class="even">
 <td>贵州茅台</td>
 <td>白酒</td>
-<td>0.000220</td>
-<td>0.5537</td>
+<td>0.00022</td>
+<td>0.554</td>
 <td>0.9618</td>
-<td>[0.85, 1.07]</td>
+<td>[0.90, 1.02]</td>
 <td>0.4977</td>
 </tr>
 <tr class="odd">
 <td>顺丰控股</td>
 <td>物流</td>
-<td>0.000269</td>
-<td>0.6096</td>
+<td>0.00027</td>
+<td>0.610</td>
 <td>0.8693</td>
-<td>[0.74, 1.00]</td>
+<td>[0.78, 0.95]</td>
 <td>0.2855</td>
 </tr>
 <tr class="even">
 <td>招商银行</td>
 <td>银行</td>
-<td>0.000231</td>
-<td>0.5115</td>
+<td>0.00023</td>
+<td>0.511</td>
 <td>0.8196</td>
-<td>[0.71, 0.93]</td>
+<td>[0.76, 0.88]</td>
 <td>0.4449</td>
 </tr>
 <tr class="odd">
 <td>万科A</td>
 <td>房地产</td>
-<td>-0.000759</td>
-<td>0.0571</td>
+<td>-0.00076</td>
+<td>0.057†</td>
 <td>0.6905</td>
-<td>[0.56, 0.82]</td>
+<td>[0.63, 0.75]</td>
 <td>0.3064</td>
 </tr>
 <tr class="even">
 <td>上汽集团</td>
 <td>汽车</td>
-<td>-0.000166</td>
-<td>0.5487</td>
+<td>-0.00017</td>
+<td>0.549</td>
 <td>0.5059</td>
-<td>[0.41, 0.60]</td>
+<td>[0.46, 0.55]</td>
 <td>0.3293</td>
 </tr>
 <tr class="odd">
 <td>中国石油</td>
 <td>能源</td>
-<td>0.000467</td>
-<td>0.1709</td>
+<td>0.00047</td>
+<td>0.171</td>
 <td>0.3479</td>
-<td>[0.25, 0.45]</td>
+<td>[0.29, 0.40]</td>
 <td>0.1331</td>
 </tr>
 <tr class="even">
 <td>工商银行</td>
 <td>银行</td>
-<td>0.000113</td>
-<td>0.5283</td>
+<td>0.00011</td>
+<td>0.528</td>
 <td>0.1642</td>
-<td>[0.09, 0.24]</td>
+<td>[0.14, 0.19]</td>
 <td>0.1094</td>
 </tr>
 </tbody>
 </table>
+<p>注：† p&lt;0.1, * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</p>
 </section>
 <section id="beta系数点图" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="beta系数点图"><span class="header-section-number">4.3.2</span> Beta系数点图</h3>
@@ -450,13 +750,23 @@ window.Quarto = {
 <h2 data-number="4.4" class="anchored" data-anchor-id="结果讨论"><span class="header-section-number">4.4</span> 结果讨论</h2>
 <section id="问题1β1的股票分析" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="问题1β1的股票分析"><span class="header-section-number">4.4.1</span> 问题1：β&gt;1的股票分析</h3>
-<p><strong>β&gt;1的股票（周期性行业，共3只）</strong>：</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>周期性股票（β&gt;1，共3只）
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>股票</th>
 <th>行业</th>
 <th>β</th>
+<th>特征</th>
 </tr>
 </thead>
 <tbody>
@@ -464,33 +774,48 @@ window.Quarto = {
 <td>比亚迪</td>
 <td>汽车</td>
 <td>1.2807</td>
+<td>新能源龙头，成长性高</td>
 </tr>
 <tr class="even">
 <td>五粮液</td>
 <td>白酒</td>
 <td>1.2488</td>
+<td>消费升级受益者</td>
 </tr>
 <tr class="odd">
 <td>中兴通讯</td>
 <td>通讯</td>
 <td>1.1580</td>
+<td>5G概念，技术驱动</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p><strong>分析结论</strong>：</p>
 <ol type="1">
-<li>这些股票的市场敏感度高于市场平均水平</li>
+<li>这些股票的市场敏感度<strong>高于</strong>市场平均水平</li>
 <li>当市场上涨时，这些股票涨幅更大；当市场下跌时，跌幅也更大</li>
-<li>典型的周期性行业包括：汽车、通讯、白酒等</li>
-<li>这类股票适合牛市配置，但需要更强的风险承受能力</li>
+<li>典型的周期性行业特征：汽车、通讯、白酒等</li>
+<li>这类股票适合<strong>牛市配置</strong>，但需要更强的风险承受能力</li>
 </ol>
-<p><strong>β≤1的股票（防御性行业，共7只）</strong>：</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>防御性股票（β≤1，共7只）
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>股票</th>
 <th>行业</th>
 <th>β</th>
+<th>特征</th>
 </tr>
 </thead>
 <tbody>
@@ -498,69 +823,175 @@ window.Quarto = {
 <td>贵州茅台</td>
 <td>白酒</td>
 <td>0.9618</td>
+<td>消费龙头，品牌溢价</td>
 </tr>
 <tr class="even">
 <td>顺丰控股</td>
 <td>物流</td>
 <td>0.8693</td>
+<td>行业龙头，竞争激烈</td>
 </tr>
 <tr class="odd">
 <td>招商银行</td>
 <td>银行</td>
 <td>0.8196</td>
+<td>零售银行代表</td>
 </tr>
 <tr class="even">
 <td>万科A</td>
 <td>房地产</td>
 <td>0.6905</td>
+<td>行业调整中</td>
 </tr>
 <tr class="odd">
 <td>上汽集团</td>
 <td>汽车</td>
 <td>0.5059</td>
+<td>传统汽车转型</td>
 </tr>
 <tr class="even">
 <td>中国石油</td>
 <td>能源</td>
 <td>0.3479</td>
+<td>能源巨头</td>
 </tr>
 <tr class="odd">
 <td>工商银行</td>
 <td>银行</td>
 <td>0.1642</td>
+<td>国有大行</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p><strong>分析结论</strong>：</p>
 <ol type="1">
-<li>这些股票的市场敏感度低于市场平均水平</li>
+<li>这些股票的市场敏感度<strong>低于</strong>市场平均水平</li>
 <li>波动相对较小，具有一定的抗跌属性</li>
-<li>典型的防御性行业包括：银行、能源等</li>
-<li>这类股票适合熊市或震荡市配置</li>
+<li>典型的防御性行业特征：银行、能源等</li>
+<li>这类股票适合<strong>熊市或震荡市</strong>配置</li>
 </ol>
+<p><strong>与周期性/防御性行业分类的吻合度</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>行业</th>
+<th>β范围</th>
+<th>分类</th>
+<th>吻合度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>汽车</td>
+<td>0.51-1.28</td>
+<td>周期性</td>
+<td>部分吻合（比亚迪周期，上汽防御）</td>
+</tr>
+<tr class="even">
+<td>白酒</td>
+<td>0.96-1.25</td>
+<td>周期性</td>
+<td>基本吻合</td>
+</tr>
+<tr class="odd">
+<td>银行</td>
+<td>0.16-0.82</td>
+<td>防御性</td>
+<td>高度吻合</td>
+</tr>
+<tr class="even">
+<td>能源</td>
+<td>0.35</td>
+<td>防御性</td>
+<td>高度吻合</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="问题2alpha显著性分析" class="level3" data-number="4.4.2">
 <h3 data-number="4.4.2" class="anchored" data-anchor-id="问题2alpha显著性分析"><span class="header-section-number">4.4.2</span> 问题2：Alpha显著性分析</h3>
-<p><strong>Alpha显著异于零的股票</strong>：</p>
-<p>仅有比亚迪的α在统计上显著（p=0.0339 &lt; 0.05）。</p>
-<p><strong>Alpha显著意味着什么</strong>：</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">重要</span>Alpha显著意味着什么？
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>理论背景</strong>：CAPM模型预测α应该等于零（或统计上不显著）</p>
+<p><strong>正向Alpha（α&gt;0且显著）</strong>：</p>
 <ol type="1">
-<li><p><strong>理论背景</strong>：CAPM模型预测α应该等于零（或统计上不显著）</p></li>
-<li><p><strong>正向Alpha（α&gt;0且显著）</strong>：</p>
-<ul>
-<li>股票收益超过了CAPM模型预测的水平</li>
+<li>股票收益<strong>超过</strong>了CAPM模型预测的水平</li>
 <li>可能存在市场低估或其他定价因子</li>
 <li>主动管理投资者追求的目标</li>
-</ul></li>
-<li><p><strong>本样本结果分析</strong>：</p>
-<ul>
-<li>大部分股票α不显著，说明市场相对有效</li>
-<li>比亚迪显著的正向Alpha可能反映新能源行业高增长</li>
-</ul></li>
 </ol>
+<p><strong>本样本结果</strong>：</p>
+<ul>
+<li>仅比亚迪的α在统计上显著（p=0.034 &lt; 0.05）</li>
+<li>大部分股票α不显著，说明市场相对有效</li>
+<li>比亚迪显著的正向Alpha反映新能源行业高增长</li>
+</ul>
+</div>
+</div>
+<p><strong>各股票Alpha分析</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>股票</th>
+<th>α</th>
+<th>p值</th>
+<th>显著性</th>
+<th>解读</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>比亚迪</td>
+<td>+</td>
+<td>0.034</td>
+<td>*</td>
+<td>新能源行业超额收益</td>
+</tr>
+<tr class="even">
+<td>万科A</td>
+<td>-</td>
+<td>0.057</td>
+<td>†</td>
+<td>行业下行压力，接近显著</td>
+</tr>
+<tr class="odd">
+<td>其他</td>
+<td>±</td>
+<td>&gt;0.1</td>
+<td>不显著</td>
+<td>市场定价有效</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="问题3r²分析" class="level3" data-number="4.4.3">
 <h3 data-number="4.4.3" class="anchored" data-anchor-id="问题3r²分析"><span class="header-section-number">4.4.3</span> 问题3：R²分析</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>R²的含义
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>R²衡量</strong>：市场收益对个股收益的解释比例</li>
+<li><strong>R²越高</strong>：个股走势与市场越同步</li>
+<li><strong>R²越低</strong>：个股受特有因素影响越大</li>
+</ul>
+</div>
+</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -568,65 +999,112 @@ window.Quarto = {
 <th>股票</th>
 <th>行业</th>
 <th>R²</th>
+<th>解读</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>最高</td>
+<td><strong>最高</strong></td>
 <td>五粮液</td>
 <td>白酒</td>
 <td>0.5517</td>
+<td>与市场高度同步</td>
 </tr>
 <tr class="even">
-<td>最低</td>
+<td><strong>次高</strong></td>
+<td>贵州茅台</td>
+<td>白酒</td>
+<td>0.4977</td>
+<td>消费龙头代表性强</td>
+</tr>
+<tr class="odd">
+<td><strong>最低</strong></td>
 <td>工商银行</td>
 <td>银行</td>
 <td>0.1094</td>
+<td>受政策等特有因素影响</td>
+</tr>
+<tr class="even">
+<td><strong>次低</strong></td>
+<td>中国石油</td>
+<td>能源</td>
+<td>0.1331</td>
+<td>受国际油价影响</td>
 </tr>
 </tbody>
 </table>
 <p><strong>R²差异解释</strong>：</p>
+<p><strong>R²高的原因</strong>：</p>
 <ol type="1">
-<li><strong>R²的含义</strong>：
-<ul>
-<li>R²衡量市场收益对个股收益的解释比例</li>
-<li>R²越高，个股走势与市场越同步</li>
-<li>R²越低，个股受特有因素影响越大</li>
-</ul></li>
-<li><strong>R²高的原因</strong>：
-<ul>
 <li>大盘股：与市场指数成分股重叠度高</li>
 <li>行业龙头：代表性强，与经济周期同步</li>
-</ul></li>
-<li><strong>R²低的原因</strong>：
-<ul>
+<li>白酒行业：消费属性强，与经济景气度相关</li>
+</ol>
+<p><strong>R²低的原因</strong>：</p>
+<ol type="1">
 <li>银行股：受政策、利率等特有因素影响</li>
 <li>能源股：受国际油价等外部因素影响</li>
-</ul></li>
-<li><strong>投资启示</strong>：
-<ul>
-<li>R²高的股票：分散化效果较差</li>
-<li>R²低的股票：具有更好的分散化价值</li>
-</ul></li>
+<li>特殊事件：个别公司的重大事件影响</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>投资启示
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>R²高的股票</strong>：</p>
+<ul>
+<li>分散化效果较差</li>
+<li>与市场相关性高</li>
+<li>适合作为市场代表性资产</li>
+</ul>
+<p><strong>R²低的股票</strong>：</p>
+<ul>
+<li>具有更好的分散化价值</li>
+<li>受特有因素影响大</li>
+<li>需要更多公司层面的研究</li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="小结" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="小结"><span class="header-section-number">4.5</span> 小结</h2>
 <p>本章完成了以下CAPM分析工作：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>分析内容</th>
+<th>主要发现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Beta估计</td>
+<td>3只周期性（β&gt;1），7只防御性（β≤1）</td>
+</tr>
+<tr class="even">
+<td>Alpha分析</td>
+<td>仅比亚迪的Alpha显著</td>
+</tr>
+<tr class="odd">
+<td>R²分析</td>
+<td>五粮液最高（0.55），工商银行最低（0.11）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要发现</strong>：</p>
 <ol type="1">
-<li>对10只股票估计了CAPM模型</li>
-<li>分析了周期性与防御性行业的Beta特征</li>
-<li>讨论了Alpha显著性和R²差异的经济含义</li>
-<li>提供了投资决策参考</li>
+<li><strong>周期性股票</strong>：比亚迪、五粮液、中兴通讯，适合牛市配置</li>
+<li><strong>防御性股票</strong>：工商银行、中国石油，适合熊市或震荡市配置</li>
+<li><strong>市场有效性</strong>：大部分Alpha不显著，A股市场定价相对有效</li>
+<li><strong>分散化价值</strong>：低R²股票具有更好的组合分散化效果</li>
 </ol>
-<p>主要发现：</p>
-<ul>
-<li>比亚迪、五粮液、中兴通讯属于周期性股票（β&gt;1）</li>
-<li>工商银行、中国石油属于防御性股票（β&lt;0.5）</li>
-<li>仅比亚迪的Alpha在统计上显著</li>
-<li>五粮液的R²最高，工商银行的R²最低</li>
-</ul>
+<p>下一章将分析宏观指标对股票收益率的影响。</p>
 
 
 <!-- -->
@@ -636,6 +1114,19 @@ window.Quarto = {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -758,7 +1249,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/1197325514-cyber\.github\.io\/dshw-p01\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -772,6 +1263,13 @@ window.Quarto = {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1097,179 +1595,274 @@ window.Quarto = {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># CAPM模型回归分析 {#sec-capm}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>本章使用资本资产定价模型（CAPM）分析各股票的系统风险暴露。</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## CAPM模型介绍</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### 模型形式</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>CAPM模型的基本形式：</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>$$r_{i,t} - r_f = \alpha_i + \beta_i (r_{m,t} - r_f) + \varepsilon_{i,t}$$</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>其中：</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$r_{i,t}$：个股日对数收益率</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$r_{m,t}$：沪深300日对数收益率（市场基准）</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$r_f$：无风险利率</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\alpha_i$：超额收益（Alpha）</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\beta_i$：系统风险系数（Beta）</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### 参数设定</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**无风险利率**：年化2.0%，日频换算：$r_f^{daily} = 0.02 / 252$</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**市场基准**：沪深300指数</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 无风险利率设定</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>rf_annual <span class="op">=</span> <span class="fl">0.02</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>rf_daily <span class="op">=</span> rf_annual <span class="op">/</span> <span class="dv">252</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（年化）: </span><span class="sc">{</span>rf_annual<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（日频）: </span><span class="sc">{</span>rf_daily<span class="op">*</span><span class="dv">100</span><span class="sc">:.4f}</span><span class="ss">%"</span>)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归估计</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### 数据准备</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算超额收益</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>stock_data[<span class="st">'stock_excess'</span>] <span class="op">=</span> stock_data[<span class="st">'log_return'</span>] <span class="op">-</span> rf_daily</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>market_data[<span class="st">'market_excess'</span>] <span class="op">=</span> market_data[<span class="st">'market_return'</span>] <span class="op">-</span> rf_daily</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># OLS回归</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(merged_data[<span class="st">'market_excess'</span>])</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> merged_data[<span class="st">'stock_excess'</span>]</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X).fit()</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归结果</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### CAPM估计结果</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> $\hat{\alpha}$ <span class="pp">|</span> p值 <span class="pp">|</span> $\hat{\beta}$ <span class="pp">|</span> 95% CI <span class="pp">|</span> $R^2$ <span class="pp">|</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|----------------|-----|---------------|--------|-------|</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.001497 <span class="pp">|</span> 0.0339 <span class="pp">|</span> 1.2807 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.15, 1.41</span><span class="co">]</span> <span class="pp">|</span> 0.3271 <span class="pp">|</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.000088 <span class="pp">|</span> 0.8388 <span class="pp">|</span> 1.2488 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.13, 1.37</span><span class="co">]</span> <span class="pp">|</span> 0.5517 <span class="pp">|</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> -0.000100 <span class="pp">|</span> 0.8785 <span class="pp">|</span> 1.1580 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.02, 1.30</span><span class="co">]</span> <span class="pp">|</span> 0.3175 <span class="pp">|</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.000220 <span class="pp">|</span> 0.5537 <span class="pp">|</span> 0.9618 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.85, 1.07</span><span class="co">]</span> <span class="pp">|</span> 0.4977 <span class="pp">|</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.000269 <span class="pp">|</span> 0.6096 <span class="pp">|</span> 0.8693 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.74, 1.00</span><span class="co">]</span> <span class="pp">|</span> 0.2855 <span class="pp">|</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.000231 <span class="pp">|</span> 0.5115 <span class="pp">|</span> 0.8196 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.71, 0.93</span><span class="co">]</span> <span class="pp">|</span> 0.4449 <span class="pp">|</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> -0.000759 <span class="pp">|</span> 0.0571 <span class="pp">|</span> 0.6905 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.56, 0.82</span><span class="co">]</span> <span class="pp">|</span> 0.3064 <span class="pp">|</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> -0.000166 <span class="pp">|</span> 0.5487 <span class="pp">|</span> 0.5059 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.41, 0.60</span><span class="co">]</span> <span class="pp">|</span> 0.3293 <span class="pp">|</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> 0.000467 <span class="pp">|</span> 0.1709 <span class="pp">|</span> 0.3479 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.25, 0.45</span><span class="co">]</span> <span class="pp">|</span> 0.1331 <span class="pp">|</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.000113 <span class="pp">|</span> 0.5283 <span class="pp">|</span> 0.1642 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.09, 0.24</span><span class="co">]</span> <span class="pp">|</span> 0.1094 <span class="pp">|</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beta系数点图</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="al">![Beta系数点图](../output/fig5_beta_coefficients.png)</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## 结果讨论</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题1：β&gt;1的股票分析</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>**β&gt;1的股票（周期性行业，共3只）**：</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> β <span class="pp">|</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-----|</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 1.2807 <span class="pp">|</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 1.2488 <span class="pp">|</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> 1.1580 <span class="pp">|</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>**分析结论**：</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>这些股票的市场敏感度高于市场平均水平</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>当市场上涨时，这些股票涨幅更大；当市场下跌时，跌幅也更大</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>典型的周期性行业包括：汽车、通讯、白酒等</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>这类股票适合牛市配置，但需要更强的风险承受能力</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>**β≤1的股票（防御性行业，共7只）**：</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> β <span class="pp">|</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-----|</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.9618 <span class="pp">|</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.8693 <span class="pp">|</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.8196 <span class="pp">|</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> 0.6905 <span class="pp">|</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.5059 <span class="pp">|</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> 0.3479 <span class="pp">|</span></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.1642 <span class="pp">|</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>**分析结论**：</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>这些股票的市场敏感度低于市场平均水平</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>波动相对较小，具有一定的抗跌属性</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>典型的防御性行业包括：银行、能源等</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>这类股票适合熊市或震荡市配置</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题2：Alpha显著性分析</span></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>**Alpha显著异于零的股票**：</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>仅有比亚迪的α在统计上显著（p=0.0339 &lt; 0.05）。</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>**Alpha显著意味着什么**：</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**理论背景**：CAPM模型预测α应该等于零（或统计上不显著）</span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**正向Alpha（α&gt;0且显著）**：</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>股票收益超过了CAPM模型预测的水平</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>可能存在市场低估或其他定价因子</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>主动管理投资者追求的目标</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**本样本结果分析**：</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>大部分股票α不显著，说明市场相对有效</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>比亚迪显著的正向Alpha可能反映新能源行业高增长</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题3：R²分析</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 指标 <span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> R² <span class="pp">|</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|------|-----|</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 最高 <span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.5517 <span class="pp">|</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 最低 <span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.1094 <span class="pp">|</span></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>**R²差异解释**：</span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**R²的含义**：</span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>R²衡量市场收益对个股收益的解释比例</span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>R²越高，个股走势与市场越同步</span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>R²越低，个股受特有因素影响越大</span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**R²高的原因**：</span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>大盘股：与市场指数成分股重叠度高</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>行业龙头：代表性强，与经济周期同步</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**R²低的原因**：</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>银行股：受政策、利率等特有因素影响</span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>能源股：受国际油价等外部因素影响</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**投资启示**：</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>R²高的股票：分散化效果较差</span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>R²低的股票：具有更好的分散化价值</span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>本章完成了以下CAPM分析工作：</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>对10只股票估计了CAPM模型</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>分析了周期性与防御性行业的Beta特征</span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>讨论了Alpha显著性和R²差异的经济含义</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>提供了投资决策参考</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>主要发现：</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>比亚迪、五粮液、中兴通讯属于周期性股票（β&gt;1）</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>工商银行、中国石油属于防御性股票（β&lt;0.5）</span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>仅比亚迪的Alpha在统计上显著</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>五粮液的R²最高，工商银行的R²最低</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># CAPM模型回归分析 {#sec-capm}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>本章使用资本资产定价模型（CAPM）分析各股票的系统风险暴露，揭示周期性与防御性行业的风险特征。</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## CAPM模型介绍</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### 模型形式</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>CAPM模型的基本形式：</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>$$r_{i,t} - r_f = \alpha_i + \beta_i (r_{m,t} - r_f) + \varepsilon_{i,t}$$</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>其中：</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 符号 <span class="pp">|</span> 含义 <span class="pp">|</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_{i,t}$ <span class="pp">|</span> 个股日对数收益率 <span class="pp">|</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_{m,t}$ <span class="pp">|</span> 沪深300日对数收益率（市场基准） <span class="pp">|</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_f$ <span class="pp">|</span> 无风险利率 <span class="pp">|</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\alpha_i$ <span class="pp">|</span> 超额收益（Alpha） <span class="pp">|</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta_i$ <span class="pp">|</span> 系统风险系数（Beta） <span class="pp">|</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\varepsilon_{i,t}$ <span class="pp">|</span> 残差项 <span class="pp">|</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### 参数设定</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 无风险利率设定</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>rf_annual <span class="op">=</span> <span class="fl">0.02</span>  <span class="co"># 年化2.0%</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>rf_daily <span class="op">=</span> rf_annual <span class="op">/</span> <span class="dv">252</span>  <span class="co"># 日频换算</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（年化）: </span><span class="sc">{</span>rf_annual<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无风险利率（日频）: </span><span class="sc">{</span>rf_daily<span class="op">*</span><span class="dv">100</span><span class="sc">:.4f}</span><span class="ss">%"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## 无风险利率设定理由</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**年化2.0%**：参考中国10年期国债收益率</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**日频换算**：$r_f^{daily} = r_f^{annual} / 252$</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**252个交易日**：A股市场年均交易日数量</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beta系数含义</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Beta范围 <span class="pp">|</span> 风险特征 <span class="pp">|</span> 投资含义 <span class="pp">|</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|----------|</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> β &gt; 1.5 <span class="pp">|</span> 高风险 <span class="pp">|</span> 牛市涨幅大，熊市跌幅也大 <span class="pp">|</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1.0 &lt; β ≤ 1.5 <span class="pp">|</span> 中高风险 <span class="pp">|</span> 市场敏感度高 <span class="pp">|</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 0.5 &lt; β ≤ 1.0 <span class="pp">|</span> 中低风险 <span class="pp">|</span> 与市场同步波动 <span class="pp">|</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> β ≤ 0.5 <span class="pp">|</span> 低风险 <span class="pp">|</span> 防御性强，波动小 <span class="pp">|</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归估计</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### 数据准备</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算超额收益</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>stock_data[<span class="st">'stock_excess'</span>] <span class="op">=</span> stock_data[<span class="st">'log_return'</span>] <span class="op">-</span> rf_daily</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>market_data[<span class="st">'market_excess'</span>] <span class="op">=</span> market_data[<span class="st">'market_return'</span>] <span class="op">-</span> rf_daily</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并数据</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> stock_data.merge(market_data, on<span class="op">=</span><span class="st">'date'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### OLS回归</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="co"># 对每只股票进行回归</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stock_name <span class="kw">in</span> stock_names:</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    stock_df <span class="op">=</span> merged_data[merged_data[<span class="st">'name'</span>] <span class="op">==</span> stock_name]</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 准备回归变量</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> sm.add_constant(stock_df[<span class="st">'market_excess'</span>])</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> stock_df[<span class="st">'stock_excess'</span>]</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OLS估计</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    results[stock_name] <span class="op">=</span> model</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归结果</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### CAPM估计结果</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> $\hat{\alpha}$ <span class="pp">|</span> p值 <span class="pp">|</span> $\hat{\beta}$ <span class="pp">|</span> 95% CI <span class="pp">|</span> $R^2$ <span class="pp">|</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|----------------|-----|---------------|--------|-------|</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.00150 <span class="pp">|</span> 0.034<span class="sc">\*</span> <span class="pp">|</span> 1.2807 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.17, 1.39</span><span class="co">]</span> <span class="pp">|</span> 0.3271 <span class="pp">|</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.00009 <span class="pp">|</span> 0.839 <span class="pp">|</span> 1.2488 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.18, 1.32</span><span class="co">]</span> <span class="pp">|</span> 0.5517 <span class="pp">|</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> -0.00010 <span class="pp">|</span> 0.878 <span class="pp">|</span> 1.1580 <span class="pp">|</span> <span class="co">[</span><span class="ot">1.05, 1.26</span><span class="co">]</span> <span class="pp">|</span> 0.3175 <span class="pp">|</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.00022 <span class="pp">|</span> 0.554 <span class="pp">|</span> 0.9618 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.90, 1.02</span><span class="co">]</span> <span class="pp">|</span> 0.4977 <span class="pp">|</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.00027 <span class="pp">|</span> 0.610 <span class="pp">|</span> 0.8693 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.78, 0.95</span><span class="co">]</span> <span class="pp">|</span> 0.2855 <span class="pp">|</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.00023 <span class="pp">|</span> 0.511 <span class="pp">|</span> 0.8196 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.76, 0.88</span><span class="co">]</span> <span class="pp">|</span> 0.4449 <span class="pp">|</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> -0.00076 <span class="pp">|</span> 0.057† <span class="pp">|</span> 0.6905 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.63, 0.75</span><span class="co">]</span> <span class="pp">|</span> 0.3064 <span class="pp">|</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> -0.00017 <span class="pp">|</span> 0.549 <span class="pp">|</span> 0.5059 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.46, 0.55</span><span class="co">]</span> <span class="pp">|</span> 0.3293 <span class="pp">|</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> 0.00047 <span class="pp">|</span> 0.171 <span class="pp">|</span> 0.3479 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.29, 0.40</span><span class="co">]</span> <span class="pp">|</span> 0.1331 <span class="pp">|</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.00011 <span class="pp">|</span> 0.528 <span class="pp">|</span> 0.1642 <span class="pp">|</span> <span class="co">[</span><span class="ot">0.14, 0.19</span><span class="co">]</span> <span class="pp">|</span> 0.1094 <span class="pp">|</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>注：† p&lt;0.1, <span class="sc">\*</span> p&lt;0.05, <span class="sc">\*\*</span> p&lt;0.01, <span class="sc">\*\*\*</span> p&lt;0.001</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beta系数点图</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="al">![Beta系数点图](../output/fig5_beta_coefficients.png)</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## 结果讨论</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题1：β&gt;1的股票分析</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## 周期性股票（β&gt;1，共3只）</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> β <span class="pp">|</span> 特征 <span class="pp">|</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-----|------|</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 1.2807 <span class="pp">|</span> 新能源龙头，成长性高 <span class="pp">|</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 1.2488 <span class="pp">|</span> 消费升级受益者 <span class="pp">|</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> 1.1580 <span class="pp">|</span> 5G概念，技术驱动 <span class="pp">|</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>**分析结论**：</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>这些股票的市场敏感度**高于**市场平均水平</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>当市场上涨时，这些股票涨幅更大；当市场下跌时，跌幅也更大</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>典型的周期性行业特征：汽车、通讯、白酒等</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>这类股票适合**牛市配置**，但需要更强的风险承受能力</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## 防御性股票（β≤1，共7只）</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> β <span class="pp">|</span> 特征 <span class="pp">|</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-----|------|</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.9618 <span class="pp">|</span> 消费龙头，品牌溢价 <span class="pp">|</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.8693 <span class="pp">|</span> 行业龙头，竞争激烈 <span class="pp">|</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.8196 <span class="pp">|</span> 零售银行代表 <span class="pp">|</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> 0.6905 <span class="pp">|</span> 行业调整中 <span class="pp">|</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.5059 <span class="pp">|</span> 传统汽车转型 <span class="pp">|</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> 0.3479 <span class="pp">|</span> 能源巨头 <span class="pp">|</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.1642 <span class="pp">|</span> 国有大行 <span class="pp">|</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>**分析结论**：</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>这些股票的市场敏感度**低于**市场平均水平</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>波动相对较小，具有一定的抗跌属性</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>典型的防御性行业特征：银行、能源等</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>这类股票适合**熊市或震荡市**配置</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>**与周期性/防御性行业分类的吻合度**：</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 行业 <span class="pp">|</span> β范围 <span class="pp">|</span> 分类 <span class="pp">|</span> 吻合度 <span class="pp">|</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|-------|------|--------|</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 汽车 <span class="pp">|</span> 0.51-1.28 <span class="pp">|</span> 周期性 <span class="pp">|</span> 部分吻合（比亚迪周期，上汽防御） <span class="pp">|</span></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 白酒 <span class="pp">|</span> 0.96-1.25 <span class="pp">|</span> 周期性 <span class="pp">|</span> 基本吻合 <span class="pp">|</span></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 银行 <span class="pp">|</span> 0.16-0.82 <span class="pp">|</span> 防御性 <span class="pp">|</span> 高度吻合 <span class="pp">|</span></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 能源 <span class="pp">|</span> 0.35 <span class="pp">|</span> 防御性 <span class="pp">|</span> 高度吻合 <span class="pp">|</span></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题2：Alpha显著性分析</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Alpha显著意味着什么？</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>**理论背景**：CAPM模型预测α应该等于零（或统计上不显著）</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>**正向Alpha（α&gt;0且显著）**：</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>股票收益**超过**了CAPM模型预测的水平</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>可能存在市场低估或其他定价因子</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>主动管理投资者追求的目标</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>**本样本结果**：</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>仅比亚迪的α在统计上显著（p=0.034 &lt; 0.05）</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>大部分股票α不显著，说明市场相对有效</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>比亚迪显著的正向Alpha反映新能源行业高增长</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>**各股票Alpha分析**：</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> α <span class="pp">|</span> p值 <span class="pp">|</span> 显著性 <span class="pp">|</span> 解读 <span class="pp">|</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---|-----|--------|------|</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> + <span class="pp">|</span> 0.034 <span class="pp">|</span> <span class="sc">\*</span> <span class="pp">|</span> 新能源行业超额收益 <span class="pp">|</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> - <span class="pp">|</span> 0.057 <span class="pp">|</span> † <span class="pp">|</span> 行业下行压力，接近显著 <span class="pp">|</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 其他 <span class="pp">|</span> ± <span class="pp">|</span> &gt;0.1 <span class="pp">|</span> 不显著 <span class="pp">|</span> 市场定价有效 <span class="pp">|</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### 问题3：R²分析</span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## R²的含义</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R²衡量**：市场收益对个股收益的解释比例</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R²越高**：个股走势与市场越同步</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R²越低**：个股受特有因素影响越大</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 指标 <span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> R² <span class="pp">|</span> 解读 <span class="pp">|</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|------|-----|------|</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **最高** <span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.5517 <span class="pp">|</span> 与市场高度同步 <span class="pp">|</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **次高** <span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.4977 <span class="pp">|</span> 消费龙头代表性强 <span class="pp">|</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **最低** <span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> 0.1094 <span class="pp">|</span> 受政策等特有因素影响 <span class="pp">|</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **次低** <span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> 0.1331 <span class="pp">|</span> 受国际油价影响 <span class="pp">|</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>**R²差异解释**：</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>**R²高的原因**：</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>大盘股：与市场指数成分股重叠度高</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>行业龙头：代表性强，与经济周期同步</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>白酒行业：消费属性强，与经济景气度相关</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>**R²低的原因**：</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>银行股：受政策、利率等特有因素影响</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>能源股：受国际油价等外部因素影响</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>特殊事件：个别公司的重大事件影响</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## 投资启示</span></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>**R²高的股票**：</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>分散化效果较差</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>与市场相关性高</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>适合作为市场代表性资产</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>**R²低的股票**：</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>具有更好的分散化价值</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>受特有因素影响大</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>需要更多公司层面的研究</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>本章完成了以下CAPM分析工作：</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 分析内容 <span class="pp">|</span> 主要发现 <span class="pp">|</span></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Beta估计 <span class="pp">|</span> 3只周期性（β&gt;1），7只防御性（β≤1） <span class="pp">|</span></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Alpha分析 <span class="pp">|</span> 仅比亚迪的Alpha显著 <span class="pp">|</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> R²分析 <span class="pp">|</span> 五粮液最高（0.55），工商银行最低（0.11） <span class="pp">|</span></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>**主要发现**：</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**周期性股票**：比亚迪、五粮液、中兴通讯，适合牛市配置</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**防御性股票**：工商银行、中国石油，适合熊市或震荡市配置</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**市场有效性**：大部分Alpha不显著，A股市场定价相对有效</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**分散化价值**：低R²股票具有更好的组合分散化效果</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>下一章将分析宏观指标对股票收益率的影响。</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>P01：金融数据获取、管理与初步分析</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/04-capm.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>由Quarto构建</p>
+</div>
+  </div>
+</footer>
 
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

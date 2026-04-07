@@ -76,10 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-230298c4cd7d17908372e99c35fbc3fa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-abfa4615eba2ed0d4bb7fb949ed9c296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,9 +143,172 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -149,7 +317,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-macro.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-analysis.html">分析篇</a></li><li class="breadcrumb-item"><a href="../chapters/05-macro.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,6 +333,33 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">P01：金融数据获取、管理与初步分析</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/1197325514-cyber/dshw-p01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -180,36 +375,58 @@ window.Quarto = {
  <span class="menu-text">前言</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">数据篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-download.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据获取</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-clean.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据清洗</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">分析篇</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">描述性统计与可视化</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-capm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CAPM模型回归分析</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-macro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summary.html" class="sidebar-item-text sidebar-link">
@@ -237,15 +454,17 @@ window.Quarto = {
   <li><a href="#敏感性差异分析" id="toc-敏感性差异分析" class="nav-link" data-scroll-target="#敏感性差异分析"><span class="header-section-number">5.3.1</span> 1. 敏感性差异分析</a></li>
   <li><a href="#经济逻辑分析" id="toc-经济逻辑分析" class="nav-link" data-scroll-target="#经济逻辑分析"><span class="header-section-number">5.3.2</span> 2. 经济逻辑分析</a></li>
   <li><a href="#投资启示" id="toc-投资启示" class="nav-link" data-scroll-target="#投资启示"><span class="header-section-number">5.3.3</span> 3. 投资启示</a></li>
+  <li><a href="#风险提示" id="toc-风险提示" class="nav-link" data-scroll-target="#风险提示"><span class="header-section-number">5.3.4</span> 4. 风险提示</a></li>
   </ul></li>
   <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">5.4</span> 小结</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/05-macro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-analysis.html">分析篇</a></li><li class="breadcrumb-item"><a href="../chapters/05-macro.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span id="sec-macro" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">宏观指标对股票收益率的影响</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
@@ -270,11 +489,58 @@ window.Quarto = {
 <p>建立宏观指标对股票收益率的影响模型：</p>
 <p><span class="math display">\[r_{i,t}^{\text{月}} = \alpha_i + \gamma_i \cdot X_t + \varepsilon_{i,t}\]</span></p>
 <p>其中：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(r_{i,t}^{\text{月}}\)</span></td>
+<td>股票月度对数收益率</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_t\)</span></td>
+<td>CPI同比增速</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\gamma_i\)</span></td>
+<td>宏观敏感系数</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\varepsilon_{i,t}\)</span></td>
+<td>残差项</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>模型选择理由
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>选择CPI的原因</strong>：</p>
+<ol type="1">
+<li>CPI反映通货膨胀水平</li>
+<li>影响央行货币政策决策</li>
+<li>与股市估值和盈利预期相关</li>
+<li>数据公开透明，易于获取</li>
+</ol>
+<p><strong>其他可选宏观指标</strong>：</p>
 <ul>
-<li><span class="math inline">\(r_{i,t}^{\text{月}}\)</span>：股票月度对数收益率</li>
-<li><span class="math inline">\(X_t\)</span>：CPI同比增速</li>
-<li><span class="math inline">\(\gamma_i\)</span>：宏观敏感系数</li>
+<li>M2同比增速：货币供应量</li>
+<li>人民币汇率：外汇影响</li>
+<li>LPR利率：资金成本</li>
+<li>工业增加值：实体经济景气度</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="回归结果" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="回归结果"><span class="header-section-number">5.2</span> 回归结果</h2>
@@ -293,44 +559,28 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>万科A</td>
-<td>房地产</td>
-<td>0.0014</td>
-<td>0.820</td>
+<td>工商银行</td>
+<td>银行</td>
+<td>-0.0065</td>
 <td>0.001</td>
-<td>No</td>
+<td>0.152</td>
+<td>***</td>
 </tr>
 <tr class="even">
-<td>中兴通讯</td>
-<td>通讯</td>
-<td>0.0005</td>
-<td>0.962</td>
-<td>0.000</td>
-<td>No</td>
+<td>中国石油</td>
+<td>能源</td>
+<td>-0.0092</td>
+<td>0.060</td>
+<td>0.054</td>
+<td>†</td>
 </tr>
 <tr class="odd">
-<td>五粮液</td>
-<td>白酒</td>
-<td>0.0084</td>
-<td>0.362</td>
-<td>0.013</td>
-<td>No</td>
-</tr>
-<tr class="even">
 <td>顺丰控股</td>
 <td>物流</td>
 <td>0.0173</td>
 <td>0.061</td>
 <td>0.054</td>
-<td>Yes*</td>
-</tr>
-<tr class="odd">
-<td>比亚迪</td>
-<td>汽车</td>
-<td>0.0074</td>
-<td>0.526</td>
-<td>0.006</td>
-<td>No</td>
+<td>†</td>
 </tr>
 <tr class="even">
 <td>招商银行</td>
@@ -349,6 +599,22 @@ window.Quarto = {
 <td>No</td>
 </tr>
 <tr class="even">
+<td>五粮液</td>
+<td>白酒</td>
+<td>0.0084</td>
+<td>0.362</td>
+<td>0.013</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>比亚迪</td>
+<td>汽车</td>
+<td>0.0074</td>
+<td>0.526</td>
+<td>0.006</td>
+<td>No</td>
+</tr>
+<tr class="even">
 <td>贵州茅台</td>
 <td>白酒</td>
 <td>0.0056</td>
@@ -357,24 +623,24 @@ window.Quarto = {
 <td>No</td>
 </tr>
 <tr class="odd">
-<td>工商银行</td>
-<td>银行</td>
-<td>-0.0065</td>
-<td>0.001</td>
-<td>0.152</td>
-<td>Yes***</td>
+<td>中兴通讯</td>
+<td>通讯</td>
+<td>0.0005</td>
+<td>0.962</td>
+<td>0.000</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>中国石油</td>
-<td>能源</td>
-<td>-0.0092</td>
-<td>0.060</td>
-<td>0.054</td>
-<td>Yes*</td>
+<td>万科A</td>
+<td>房地产</td>
+<td>0.0014</td>
+<td>0.820</td>
+<td>0.001</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
-<p>注：* p&lt;0.1, *** p&lt;0.01</p>
+<p>注：† p&lt;0.1, *** p&lt;0.01</p>
 </section>
 <section id="敏感性可视化" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="敏感性可视化"><span class="header-section-number">5.2.2</span> 敏感性可视化</h3>
@@ -390,82 +656,208 @@ window.Quarto = {
 <h2 data-number="5.3" class="anchored" data-anchor-id="结果讨论"><span class="header-section-number">5.3</span> 结果讨论</h2>
 <section id="敏感性差异分析" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="敏感性差异分析"><span class="header-section-number">5.3.1</span> 1. 敏感性差异分析</h3>
-<p><strong>显著受CPI影响的股票</strong>：</p>
-<ul>
-<li><strong>工商银行（银行）</strong>：γ = -0.0065，p &lt; 0.01，高度显著
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">重要</span>显著受CPI影响的股票
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>工商银行（银行）</strong>：γ = -0.0065，p &lt; 0.01，<strong>高度显著</strong></p>
 <ul>
 <li>银行业对利率政策高度敏感</li>
 <li>CPI上升预期导致货币政策收紧，影响银行盈利</li>
-</ul></li>
-<li><strong>中国石油（能源）</strong>：γ = -0.0092，p &lt; 0.1
+<li>利率上升压缩银行利差</li>
+</ul>
+<p><strong>中国石油（能源）</strong>：γ = -0.0092，p &lt; 0.1</p>
 <ul>
 <li>能源行业与宏观经济周期高度相关</li>
 <li>CPI波动反映经济景气程度</li>
-</ul></li>
-<li><strong>顺丰控股（物流）</strong>：γ = 0.0173，p &lt; 0.1
+<li>油价与CPI存在联动关系</li>
+</ul>
+<p><strong>顺丰控股（物流）</strong>：γ = 0.0173，p &lt; 0.1</p>
 <ul>
 <li>物流业与消费景气度相关</li>
 <li>CPI反映消费活跃程度</li>
-</ul></li>
+<li>电商发展带动物流需求</li>
 </ul>
-<p><strong>不显著的股票</strong>：</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>不显著的股票
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>白酒行业（茅台、五粮液）</strong>：</p>
 <ul>
-<li>白酒行业（茅台、五粮液）：消费刚性，对宏观敏感度低</li>
-<li>房地产行业（万科）：受政策影响更大，CPI敏感度不显著</li>
-<li>汽车行业：影响渠道复杂，单一宏观指标解释力有限</li>
+<li>消费刚性强，对宏观敏感度低</li>
+<li>品牌溢价抵御通胀压力</li>
+<li>高端消费群体受经济波动影响小</li>
 </ul>
+<p><strong>房地产行业（万科）</strong>：</p>
+<ul>
+<li>受政策影响更大，CPI敏感度不显著</li>
+<li>行业处于调整期，其他因素主导</li>
+</ul>
+<p><strong>汽车行业</strong>：</p>
+<ul>
+<li>影响渠道复杂，单一宏观指标解释力有限</li>
+<li>新能源转型带来结构性变化</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="经济逻辑分析" class="level3" data-number="5.3.2">
 <h3 data-number="5.3.2" class="anchored" data-anchor-id="经济逻辑分析"><span class="header-section-number">5.3.2</span> 2. 经济逻辑分析</h3>
-<p><strong>正向影响（γ &gt; 0）</strong>：</p>
-<ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>正向影响（γ &gt; 0）
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>经济机制</strong>：</p>
+<ol type="1">
 <li>CPI上升反映经济活跃</li>
 <li>消费相关行业受益于通胀环境</li>
 <li>物流、通讯等行业与经济景气正相关</li>
-</ul>
-<p><strong>负向影响（γ &lt; 0）</strong>：</p>
+</ol>
+<p><strong>受影响股票</strong>：</p>
 <ul>
+<li>顺丰控股（物流）：+0.0173</li>
+<li>五粮液（白酒）：+0.0084</li>
+<li>比亚迪（汽车）：+0.0074</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">警告</span>负向影响（γ &lt; 0）
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>经济机制</strong>：</p>
+<ol type="1">
 <li>CPI上升引发货币政策收紧预期</li>
 <li>银行、能源等周期性行业承压</li>
 <li>资金成本上升影响盈利</li>
+</ol>
+<p><strong>受影响股票</strong>：</p>
+<ul>
+<li>中国石油（能源）：-0.0092</li>
+<li>招商银行（银行）：-0.0082</li>
+<li>工商银行（银行）：-0.0065</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="投资启示" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="投资启示"><span class="header-section-number">5.3.3</span> 3. 投资启示</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">注意</span>基于宏观环境的配置策略
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>高通胀环境</strong>：</p>
+<ul>
+<li>增加防御性股票配置（白酒、消费）</li>
+<li>减少银行、能源等负向敏感行业</li>
+<li>关注通胀对冲资产</li>
+</ul>
+<p><strong>低通胀环境</strong>：</p>
+<ul>
+<li>可增加周期性股票配置（银行、能源）</li>
+<li>关注政策宽松带来的机会</li>
+<li>布局物流等正向敏感行业</li>
+</ul>
+<p><strong>行业轮动建议</strong>：</p>
 <ol type="1">
-<li><strong>宏观环境配置策略</strong>：
-<ul>
-<li>高通胀环境：增加防御性股票配置（白酒、消费）</li>
-<li>低通胀环境：可增加周期性股票配置（银行、能源）</li>
-</ul></li>
-<li><strong>行业轮动建议</strong>：
-<ul>
 <li>关注CPI趋势变化</li>
 <li>提前调整行业配置权重</li>
-</ul></li>
-<li><strong>风险提示</strong>：
-<ul>
-<li>单一宏观指标解释力有限</li>
-<li>需结合多因素综合分析</li>
-<li>历史关系不代表未来表现</li>
-</ul></li>
+<li>结合多因素综合分析</li>
 </ol>
+</div>
+</div>
+</section>
+<section id="风险提示" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="风险提示"><span class="header-section-number">5.3.4</span> 4. 风险提示</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">重要</span>分析局限性
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>样本有限</strong>：仅5年数据，时间跨度较短</li>
+<li><strong>单一指标</strong>：仅分析CPI，未考虑其他宏观因素</li>
+<li><strong>相关性非因果</strong>：统计关系不代表因果关系</li>
+<li><strong>历史不代表未来</strong>：过去的敏感性可能变化</li>
+</ol>
+</div>
+</div>
 </section>
 </section>
 <section id="小结" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="小结"><span class="header-section-number">5.4</span> 小结</h2>
 <p>本章完成了宏观指标对股票收益率的影响分析：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>分析内容</th>
+<th>主要发现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>敏感股票</td>
+<td>工商银行、中国石油、顺丰控股受CPI影响显著</td>
+</tr>
+<tr class="even">
+<td>敏感方向</td>
+<td>银行能源负向敏感，物流正向敏感</td>
+</tr>
+<tr class="odd">
+<td>行业差异</td>
+<td>白酒行业敏感度最低</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要发现</strong>：</p>
 <ol type="1">
-<li>估计了CPI对10只股票月度收益率的影响</li>
-<li>发现工商银行、中国石油、顺丰控股受CPI影响显著</li>
-<li>不同行业对宏观指标的敏感性存在差异</li>
-<li>提供了基于宏观环境的投资配置建议</li>
+<li><strong>银行和能源行业</strong>：对CPI负向敏感，通胀压力下表现承压</li>
+<li><strong>物流行业</strong>：对CPI正向敏感，经济景气时受益</li>
+<li><strong>白酒行业</strong>：对宏观敏感度最低，具有防御属性</li>
 </ol>
-<p>主要发现：</p>
+<p><strong>投资建议</strong>：</p>
 <ul>
-<li>银行和能源行业对CPI负向敏感</li>
-<li>物流行业对CPI正向敏感</li>
-<li>白酒行业对宏观敏感度最低</li>
+<li>根据CPI趋势进行行业轮动</li>
+<li>高通胀期配置白酒等防御性股票</li>
+<li>低通胀期可增加银行、能源配置</li>
+<li>结合多因素综合判断</li>
 </ul>
 
 
@@ -476,6 +868,19 @@ window.Quarto = {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -598,7 +1003,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/1197325514-cyber\.github\.io\/dshw-p01\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -612,6 +1017,13 @@ window.Quarto = {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -949,104 +1361,209 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>其中：</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$r_{i,t}^{\text{月}}$：股票月度对数收益率</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$X_t$：CPI同比增速</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\gamma_i$：宏观敏感系数</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归结果</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### CPI对股票收益率的影响</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> $\hat{\gamma}$ <span class="pp">|</span> p值 <span class="pp">|</span> $R^2$ <span class="pp">|</span> 显著 <span class="pp">|</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|----------------|-----|-------|------|</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> 0.0014 <span class="pp">|</span> 0.820 <span class="pp">|</span> 0.001 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> 0.0005 <span class="pp">|</span> 0.962 <span class="pp">|</span> 0.000 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.0084 <span class="pp">|</span> 0.362 <span class="pp">|</span> 0.013 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.0173 <span class="pp">|</span> 0.061 <span class="pp">|</span> 0.054 <span class="pp">|</span> Yes* <span class="pp">|</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.0074 <span class="pp">|</span> 0.526 <span class="pp">|</span> 0.006 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> -0.0082 <span class="pp">|</span> 0.192 <span class="pp">|</span> 0.026 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> -0.0043 <span class="pp">|</span> 0.345 <span class="pp">|</span> 0.014 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.0056 <span class="pp">|</span> 0.456 <span class="pp">|</span> 0.009 <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> -0.0065 <span class="pp">|</span> 0.001 <span class="pp">|</span> 0.152 <span class="pp">|</span> Yes*** <span class="pp">|</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> -0.0092 <span class="pp">|</span> 0.060 <span class="pp">|</span> 0.054 <span class="pp">|</span> Yes* <span class="pp">|</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>注：<span class="sc">\*</span> p&lt;0.1, <span class="sc">\*\*\*</span> p&lt;0.01</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### 敏感性可视化</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 符号 <span class="pp">|</span> 含义 <span class="pp">|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_{i,t}^{\text{月}}$ <span class="pp">|</span> 股票月度对数收益率 <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $X_t$ <span class="pp">|</span> CPI同比增速 <span class="pp">|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\gamma_i$ <span class="pp">|</span> 宏观敏感系数 <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\varepsilon_{i,t}$ <span class="pp">|</span> 残差项 <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## 模型选择理由</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>**选择CPI的原因**：</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>CPI反映通货膨胀水平</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>影响央行货币政策决策</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>与股市估值和盈利预期相关</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>数据公开透明，易于获取</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>**其他可选宏观指标**：</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>M2同比增速：货币供应量</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>人民币汇率：外汇影响</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>LPR利率：资金成本</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>工业增加值：实体经济景气度</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="al">![宏观指标影响](../output/fig6_macro_impact.png)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## 回归结果</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## 结果讨论</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### CPI对股票收益率的影响</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. 敏感性差异分析</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>**显著受CPI影响的股票**：</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**工商银行（银行）**：γ = -0.0065，p &lt; 0.01，高度显著</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>银行业对利率政策高度敏感</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>CPI上升预期导致货币政策收紧，影响银行盈利</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**中国石油（能源）**：γ = -0.0092，p &lt; 0.1</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>能源行业与宏观经济周期高度相关</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>CPI波动反映经济景气程度</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**顺丰控股（物流）**：γ = 0.0173，p &lt; 0.1</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>物流业与消费景气度相关</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>CPI反映消费活跃程度</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>**不显著的股票**：</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>白酒行业（茅台、五粮液）：消费刚性，对宏观敏感度低</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>房地产行业（万科）：受政策影响更大，CPI敏感度不显著</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>汽车行业：影响渠道复杂，单一宏观指标解释力有限</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. 经济逻辑分析</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>**正向影响（γ &gt; 0）**：</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 股票 <span class="pp">|</span> 行业 <span class="pp">|</span> $\hat{\gamma}$ <span class="pp">|</span> p值 <span class="pp">|</span> $R^2$ <span class="pp">|</span> 显著 <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|----------------|-----|-------|------|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 工商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> -0.0065 <span class="pp">|</span> 0.001 <span class="pp">|</span> 0.152 <span class="pp">|</span> <span class="sc">\*\*\*</span> <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中国石油 <span class="pp">|</span> 能源 <span class="pp">|</span> -0.0092 <span class="pp">|</span> 0.060 <span class="pp">|</span> 0.054 <span class="pp">|</span> † <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 顺丰控股 <span class="pp">|</span> 物流 <span class="pp">|</span> 0.0173 <span class="pp">|</span> 0.061 <span class="pp">|</span> 0.054 <span class="pp">|</span> † <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 招商银行 <span class="pp">|</span> 银行 <span class="pp">|</span> -0.0082 <span class="pp">|</span> 0.192 <span class="pp">|</span> 0.026 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 上汽集团 <span class="pp">|</span> 汽车 <span class="pp">|</span> -0.0043 <span class="pp">|</span> 0.345 <span class="pp">|</span> 0.014 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 五粮液 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.0084 <span class="pp">|</span> 0.362 <span class="pp">|</span> 0.013 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 比亚迪 <span class="pp">|</span> 汽车 <span class="pp">|</span> 0.0074 <span class="pp">|</span> 0.526 <span class="pp">|</span> 0.006 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 贵州茅台 <span class="pp">|</span> 白酒 <span class="pp">|</span> 0.0056 <span class="pp">|</span> 0.456 <span class="pp">|</span> 0.009 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 中兴通讯 <span class="pp">|</span> 通讯 <span class="pp">|</span> 0.0005 <span class="pp">|</span> 0.962 <span class="pp">|</span> 0.000 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 万科A <span class="pp">|</span> 房地产 <span class="pp">|</span> 0.0014 <span class="pp">|</span> 0.820 <span class="pp">|</span> 0.001 <span class="pp">|</span> No <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>注：† p&lt;0.1, <span class="sc">\*\*\*</span> p&lt;0.01</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### 敏感性可视化</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="al">![宏观指标影响](../output/fig6_macro_impact.png)</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## 结果讨论</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. 敏感性差异分析</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## 显著受CPI影响的股票</span></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CPI上升反映经济活跃</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>消费相关行业受益于通胀环境</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>物流、通讯等行业与经济景气正相关</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>**负向影响（γ &lt; 0）**：</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>**工商银行（银行）**：γ = -0.0065，p &lt; 0.01，**高度显著**</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>银行业对利率政策高度敏感</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CPI上升预期导致货币政策收紧，影响银行盈利</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>利率上升压缩银行利差</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CPI上升引发货币政策收紧预期</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>银行、能源等周期性行业承压</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>资金成本上升影响盈利</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. 投资启示</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>**中国石油（能源）**：γ = -0.0092，p &lt; 0.1</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>能源行业与宏观经济周期高度相关</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CPI波动反映经济景气程度</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>油价与CPI存在联动关系</span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**宏观环境配置策略**：</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>高通胀环境：增加防御性股票配置（白酒、消费）</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>低通胀环境：可增加周期性股票配置（银行、能源）</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**行业轮动建议**：</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>关注CPI趋势变化</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>提前调整行业配置权重</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**风险提示**：</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>单一宏观指标解释力有限</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>需结合多因素综合分析</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>历史关系不代表未来表现</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>本章完成了宏观指标对股票收益率的影响分析：</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>估计了CPI对10只股票月度收益率的影响</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>发现工商银行、中国石油、顺丰控股受CPI影响显著</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>不同行业对宏观指标的敏感性存在差异</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>提供了基于宏观环境的投资配置建议</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>主要发现：</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>银行和能源行业对CPI负向敏感</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>物流行业对CPI正向敏感</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>白酒行业对宏观敏感度最低</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>**顺丰控股（物流）**：γ = 0.0173，p &lt; 0.1</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>物流业与消费景气度相关</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>CPI反映消费活跃程度</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>电商发展带动物流需求</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## 不显著的股票</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>**白酒行业（茅台、五粮液）**：</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>消费刚性强，对宏观敏感度低</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>品牌溢价抵御通胀压力</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>高端消费群体受经济波动影响小</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>**房地产行业（万科）**：</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>受政策影响更大，CPI敏感度不显著</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>行业处于调整期，其他因素主导</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>**汽车行业**：</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>影响渠道复杂，单一宏观指标解释力有限</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>新能源转型带来结构性变化</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. 经济逻辑分析</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## 正向影响（γ &gt; 0）</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>**经济机制**：</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>CPI上升反映经济活跃</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>消费相关行业受益于通胀环境</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>物流、通讯等行业与经济景气正相关</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>**受影响股票**：</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>顺丰控股（物流）：+0.0173</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>五粮液（白酒）：+0.0084</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>比亚迪（汽车）：+0.0074</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## 负向影响（γ &lt; 0）</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>**经济机制**：</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>CPI上升引发货币政策收紧预期</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>银行、能源等周期性行业承压</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>资金成本上升影响盈利</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>**受影响股票**：</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>中国石油（能源）：-0.0092</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>招商银行（银行）：-0.0082</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>工商银行（银行）：-0.0065</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. 投资启示</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## 基于宏观环境的配置策略</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>**高通胀环境**：</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>增加防御性股票配置（白酒、消费）</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>减少银行、能源等负向敏感行业</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>关注通胀对冲资产</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>**低通胀环境**：</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>可增加周期性股票配置（银行、能源）</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>关注政策宽松带来的机会</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>布局物流等正向敏感行业</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>**行业轮动建议**：</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>关注CPI趋势变化</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>提前调整行业配置权重</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>结合多因素综合分析</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. 风险提示</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## 分析局限性</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**样本有限**：仅5年数据，时间跨度较短</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**单一指标**：仅分析CPI，未考虑其他宏观因素</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**相关性非因果**：统计关系不代表因果关系</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**历史不代表未来**：过去的敏感性可能变化</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## 小结</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>本章完成了宏观指标对股票收益率的影响分析：</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 分析内容 <span class="pp">|</span> 主要发现 <span class="pp">|</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 敏感股票 <span class="pp">|</span> 工商银行、中国石油、顺丰控股受CPI影响显著 <span class="pp">|</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 敏感方向 <span class="pp">|</span> 银行能源负向敏感，物流正向敏感 <span class="pp">|</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 行业差异 <span class="pp">|</span> 白酒行业敏感度最低 <span class="pp">|</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>**主要发现**：</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**银行和能源行业**：对CPI负向敏感，通胀压力下表现承压</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**物流行业**：对CPI正向敏感，经济景气时受益</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**白酒行业**：对宏观敏感度最低，具有防御属性</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>**投资建议**：</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>根据CPI趋势进行行业轮动</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>高通胀期配置白酒等防御性股票</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>低通胀期可增加银行、能源配置</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>结合多因素综合判断</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>P01：金融数据获取、管理与初步分析</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/1197325514-cyber/dshw-p01/edit/main/chapters/05-macro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/1197325514-cyber/dshw-p01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>由Quarto构建</p>
+</div>
+  </div>
+</footer>
 
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
