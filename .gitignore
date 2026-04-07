@@ -38,3 +38,7 @@ env/
 *.tmp
 *.temp
 *.log
+
+/.quarto/
+**/*.quarto_ipynb
+docs/
