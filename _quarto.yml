@@ -5,7 +5,7 @@ project:
 book:
   title: "P01：金融数据获取、管理与初步分析"
   author: "林川胜"
-  date: "2026年4月"
+  date: "2026-04"
   date-format: "YYYY年MM月"
 
   sidebar:
